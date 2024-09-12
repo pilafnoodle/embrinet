@@ -9,6 +9,8 @@ header {
 }
 body {
     background-color: #e8eef2;
+    margin:0;
+
 }
 footer{
     background-color: #37393a;
@@ -42,8 +44,8 @@ a:hover, .logotext:hover {
     margin-top:10px;
     display: flex;
     gap:10px;  
-    margin-left: auto;
-    margin-right: auto;  
+    margin-left: 0;
+    width: 100vw;  
     padding:10px;    
 }
 
@@ -51,11 +53,19 @@ a:hover, .logotext:hover {
     width: 300px; /* Smaller photo size */
     margin-bottom: 10px;
 }
+
 .photo img {
     width: 100%;
     display: block;
     height: auto;
+    transition: transform 0.08s ease-in-out, box-shadow 0.3s ease; 
 }
+
+.photo img:hover{
+    transform: translate(2px, 2px);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
 
 .content {
     display: flex;
