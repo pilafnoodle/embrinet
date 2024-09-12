@@ -1,0 +1,98 @@
+header {
+    background-color: #77b6ea;
+    padding: 10px 50px;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+    color: #37393a;
+    justify-content: space-between;
+}
+body {
+    background-color: #e8eef2;
+}
+footer{
+    background-color: #37393a;
+    color: aliceblue; /*text color*/
+    position:relative;
+    bottom: 0;
+    width: 100%;
+    padding:10px;
+}
+nav ul{
+    list-style-type: none;
+    display: flex;
+}
+li{
+    display:block;
+    padding: 10px;
+}
+a{
+    text-decoration:none ;
+    color: #37393a;
+}
+a:hover, .logotext:hover {
+    text-shadow: 1px 1px 0 lightgray;
+}
+.logotext{
+    font-size: 1.5em;
+}
+.container{
+    max-width: 1224px;
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+#wrapper {
+    background-color: gray;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+.gallery{
+    margin-top:10px;
+    display: flex;
+    gap:10px;  
+    margin-left: auto;
+    margin-right: auto;  
+    padding:10px;
+
+}
+
+.photo {
+    width: 300px; /* Smaller photo size */
+    margin-bottom: 10px;
+}
+.photo img {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between; /* Space out children to the ends */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Optional: add some space between the gallery and the caption */
+}
+
+#caption-wrapper {
+    background-color: red;
+    width: 500px;
+    margin: 0 auto; /* Center the wrapper horizontally */
+    padding: 0 10px; /* Add padding to prevent text from touching the edges */
+    text-align: center; /* Center the text within the wrapper */
+    position: relative; /* Ensure wrapper is positioned relative to the viewport */
+    height: 100vh; /* Define a height to make the sticky effect work */
+}
+
+#caption {
+    position: sticky;
+    top: 10px; /* Sticky effect starts 10px from the top */
+    background-color: #f8f8f8;
+    border-left: 2px solid #ccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+    padding: 10px; /* Add padding for better readability */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    width: 100%; /* Make sure the caption takes full width of its container */
+}
