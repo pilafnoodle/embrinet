@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eh uhm buh ree</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+    <header>
+        <div class="logotext"><a href="index.html">eh um buh ree</a></div>
+        <nav>
+            <ul>
+                <li><a href="noises.html">noises</a></li> 
+                <li><a href="pictures.html">pictures</a></li> 
+                <li><a href="socials.html">socials</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+        <div class="content">
+
+            <section>
+                <div id="wrapper">
+                    <div class="gallery">
+                        <div class="column">
+                            <div class="photo photo3"><img src="img/painting.JPG" alt="" data-caption="Installation at Teufelsberg"></div>
+                            <div class="photo photo2"><img src="img/modular.JPG" alt="" data-caption="Schneideicing elit. Nesciunt assumenda mollitia eos necessrsdd Lorem Lorem Lorem"></div>
+                            <div class="photo photo3"><img src="img/jpgarden1.jpg" alt="" data-caption="Installation at Teufelsberg"></div>
+                            <div class="photo photo3"><img src="img/ball.jpg" alt="" data-caption="Installation at Teufelsberg"></div>
+                            <div class="photo photo6"><img src="img/zahnseschans.jpg" alt="" data-caption="Washington DC Metro"></div>
+
+                        </div>
+                        <div class="column">
+                            <div class="photo photo4"><img src="img/tvtower.JPG" alt="" data-caption="TV Tower"></div>
+                            <div class="photo photo5"><img src="img/staircase.jpg" alt="" data-caption="Staircase in a Patagonia store"></div>
+                            <div class="photo photo6"><img src="img/station1.jpg" alt="" data-caption="Washington DC Metro"></div>
+                            <div class="photo photo6"><img src="img/darklights.JPG" alt="" data-caption="Washington DC Metro"></div>
+                            <div class="photo photo6"><img src="img/cat.jpg" alt="" data-caption="Washington DC Metro"></div>
+
+                        </div>
+                        <div class="column">
+                            <div class="photo photo7"><img src="img/station2.JPG" alt="" data-caption="Ad for Gropius Bau"></div>
+                            <div class="photo photo8"><img src="img/umbrella.jpg" alt="" data-caption="Umbrella lined street in Washington DC"></div>
+                            <div class="photo photo10"><img src="img/fireworks.jpg" alt="" data-caption="SF street corner"></div>
+                            <div class="photo photo10"><img src="img/plane.jpg" alt="" data-caption="SF street corner"></div>
+                            <div class="photo photo10"><img src="img/silverlady.jpg" alt="" data-caption="SF street corner"></div>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section id="caption-wrapper">
+                <div id="caption">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda mollitia eos necessitatibus inventore sicing elit. Nesciunt assumenda mollitia eos necess
+            </section>
+        </div>
+
+        <script>
+            const photos = document.querySelectorAll('.gallery img');
+            const caption = document.getElementById('caption');
+        
+            photos.forEach(photo => {
+                photo.addEventListener('mouseover', function() {
+                    const captionText = this.getAttribute('data-caption');
+                    caption.textContent = captionText;
+                });
+        
+                photo.addEventListener('mouseout', function() {
+                    caption.textContent = 'hover over image to see caption';
+                });
+            });
+        </script>
+        
+
+    <footer>eh uhm buh ree, over and out</footer>
+
+</body>
+</html>
