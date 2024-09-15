@@ -1,5 +1,5 @@
 header {
-    background-color: rgb(126, 166, 194);
+    /* background-color: rgb(126, 166, 194); */
     padding: 10px 50px;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -8,8 +8,12 @@ header {
     justify-content: space-between;
 }
 body {
-    background-color: black;
     margin:0;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: 40% 60%;
+    background-color: black;
+
 
 }
 footer{
@@ -33,18 +37,21 @@ a{
     color: white;
     
 }
-a:hover, .logotext:hover {
+.logotext:hover {
     text-shadow: 1px 1px 0 lightgray;
+}
+
+.navigation:hover{
+    text-shadow: 1px 1px 0 lightgray;
+
 }
 .logotext{
     font-size: 1.5em;
     font-weight: bold;
-
-
 }
 
 .gallery-wrapper{
-    background-color: rgb(182, 187, 189);
+    background-color: rgb(110, 108, 108);
     margin-top:10px;
     display: flex;
     gap:10px;  
@@ -102,7 +109,55 @@ a:hover, .logotext:hover {
 
 p{
     text-indent: 4em;
+    color: white;
 }
+
+
+.hyperlink li{
+    display: block;
+    background-color:  rgb(109, 161, 198);
+    border-radius: 5px;
+    width: 200px;
+    padding: 20px 200px;
+    margin: 40px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+    border-left: 5px solid white ;
+}
+
+.hyperlink li:hover{
+    background: linear-gradient(to left,white, rgb(126, 166, 194));
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    transform: scale(1.02);
+    
+}
+
+.hyperlink li:hover a {
+    color: #37393a; 
+}
+
+#hyperlink-wrapper{
+    padding:0px;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+}
+
+#background-smoke {
+    position: fixed;
+    top: -40%;
+    left: 0;
+    min-width: 100%;  /* Ensure the video fills horizontally */
+    min-height: 100%; /* Ensure the video fills vertically */
+    z-index: -1; /* Send it to the background */
+    object-fit: cover; /* Cover the entire screen without distortion */
+    filter: brightness(50%);
+}
+
+
+
 
 
 
