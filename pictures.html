@@ -110,10 +110,7 @@
                     </div>
                 </div>
             </div>
-            
-
         </div>
-
         <script>
             // Select all images within elements with the class 'photo'
             const photos = document.querySelectorAll('.photo img');
@@ -129,8 +126,6 @@
                     caption.textContent = 'gallery';
                 });
             });
-
-
             photos.forEach(photo => {
                 const captionText = photo.getAttribute('data-caption');
                 const captionDiv = photo.nextElementSibling;
