@@ -1,5 +1,7 @@
 header {
-    /* background-color: rgb(126, 166, 194); */
+    background-color: rgb(126, 166, 194);
+
+
     padding: 10px 50px;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -13,9 +15,6 @@ body {
     background-repeat: no-repeat;
     background-position: 40% 60%;
     background-color: black;
-
-
-
 }
 footer{
     background-color: #37393a;
@@ -58,7 +57,8 @@ a{
     gap:10px;  
     margin-left: 0;
     width: 100vw;  
-    padding:10px;    
+    padding:10px; 
+
 }
 
 .photo {
@@ -79,11 +79,8 @@ a{
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-
 .content {
     display: flex;
-    justify-content: space-between; /* Space out children to the ends */
-    align-items: flex-start; /* Align items to the top */
     gap: 20px; /* Optional: add some space between the gallery and the caption */
 }
 
@@ -91,40 +88,106 @@ a{
 #caption-wrapper {
     position: sticky;
     top: 10px; /* Sticky effect starts 10px from the top */
-    background-color: #f8f8f8;
-    border-left: 2px solid #ccc;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.2em;
-    padding: 10px; 
-    width: 100%; 
+    padding: 10px;
+    width: 80%; 
     text-align: center;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: 9%;
 }
 
 #story-wrapper{
     position: sticky;
     top:10px;
-    padding: 100px 100px 0;
+    padding: 100px 50px 0;
     font-family: 'Courier New', Courier, monospace;
-    text-align: left;   
+    text-align: center;   
+}
+
+@media only screen and (max-width: 99999999999px) {
+    .photo-caption{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .gallery-wrapper{
+        margin-top:10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+    }
+    .content {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Optional: center items horizontally */
+    }
+
+    #story-wrapper {
+        width: 80%; /* Ensure they take up full width */
+        text-align: center; /* Center-align the text */
+        padding: 10px;
+        margin: 0 50px;
+    }
+    #caption-wrapper{
+        visibility: hidden;
+    }
+    .photo img:hover {
+        transform: none;
+        box-shadow: none;
+        cursor: default;
+    }
+
+    body {
+        display: block;
+    }
+    .photo-caption {
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9em;
+        color: white;
+        display: block;
+    }
+
+    p{
+        text-indent: 0;
+        text-align: left;
+    }
+
+    #background-smoke {
+        position: fixed;
+        z-index: -1; /* Send it to the background */
+        object-fit: cover; /* Cover the entire screen without distortion */
+        filter: brightness(50%);
+    }
 }
 
 p{
-    text-indent: 4em;
-    color: white;
+        color: white;
 }
 
-
+.hyperlink {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Full width of the parent container */
+}
 .hyperlink li{
     display: block;
     background-color:  rgb(109, 161, 198);
     border-radius: 5px;
-    width: 200px;
-    padding: 20px 200px;
-    margin: 40px;
+    width: 40%;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5em;
     border-left: 5px solid white ;
+    margin: 40px auto;
 }
 
 .hyperlink li:hover{
@@ -168,14 +231,18 @@ p{
 }
 
 .song img{
-    width:25%;
+    width:23%;
     margin-top: 30px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    height: auto;
 }
 
 #song-wrapper{
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 
 }
 
@@ -184,6 +251,11 @@ p{
     margin-top: 35px;
 }
 
+.song-embed,.song img:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+
+}
 
 
 

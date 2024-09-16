@@ -21,32 +21,6 @@
     <body>
         <div class="content">
 
-                <div class="gallery-wrapper">
-                    <div class="column">
-                        <div class="photo"><img src="img/painting.JPG" alt="" data-caption="Installation at Teufelsberg"></div>
-                        <div class="photo"><img src="img/modular.JPG" alt="" data-caption="One section of the modular tower at Schniedersladen"></div>
-                        <div class="photo"><img src="img/reflection.JPG" alt="" data-caption="Reflections of a lampshade on the window"></div>
-                        <div class="photo"><img src="img/station1.jpg" alt="" data-caption="Washington DC Metro"></div>
-                        <div class="photo"><img src="img/jpgarden1.jpg" alt="" data-caption="Japanese Garden (not taken in Japan)"></div>
-                        <div class="photo"><img src="img/ball.jpg" alt="" data-caption="Installation at Teufelsberg"></div>
-
-                    </div>
-                    <div class="column">
-                        <div class="photo"><img src="img/tvtower.JPG" alt="" data-caption="TV Tower"></div>
-                        <div class="photo"><img src="img/staircase.jpg" alt="" data-caption="Staircase in a Patagonia store"></div>
-                        <div class="photo"><img src="img/cat.jpg" alt="" data-caption="A very handsome cat"></div>
-                        <div class="photo"><img src="img/darklights.JPG" alt="" data-caption="Rain soaked street"></div>
-                        <div class="photo"><img src="img/gulls.JPG" alt="" data-caption="gulls by the Baltic Sea"></div>
-
-                    </div>
-                    <div class="column">
-                        <div class="photo"><img src="img/station2.JPG" alt="" data-caption="Ad for Gropius Bau"></div>
-                        <div class="photo"><img src="img/umbrella.jpg" alt="" data-caption="Umbrella lined street in Washington DC"></div>
-                        <div class="photo"><img src="img/fireworks.jpg" alt="" data-caption="Fireworks shot on an iPhon- no jkjkjkj"></div>
-                        <div class="photo"><img src="img/plane.jpg" alt="" data-caption="fake airport double exposure"></div>
-                        <div class="photo"><img src="img/pond.jpg" alt="" data-caption="pond in Golden Gate park"></div>
-
-                    </div>
             <div id="text-wrapper">
                 <section id="caption-wrapper">
                     <div id="caption">
@@ -62,7 +36,81 @@
                 </section>
             </div>
 
-        </div>
+            <div class="gallery-wrapper">
+                <div class="column">
+                    <div class="photo">
+                        <img src="img/painting.JPG" alt="" data-caption="Installation at Teufelsberg">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/modular.JPG" alt="" data-caption="One section of the modular tower at Schniedersladen">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/reflection.JPG" alt="" data-caption="Reflections of a lampshade on the window">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/station1.jpg" alt="" data-caption="Washington DC Metro">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/jpgarden1.jpg" alt="" data-caption="Japanese Garden (not taken in Japan)">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/ball.jpg" alt="" data-caption="Installation at Teufelsberg">
+                        <div class="photo-caption"></div>
+                    </div>
+                </div>
+            
+                <div class="column">
+                    <div class="photo">
+                        <img src="img/tvtower.JPG" alt="" data-caption="TV Tower">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/staircase.jpg" alt="" data-caption="Staircase in a Patagonia store">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/cat.jpg" alt="" data-caption="A very handsome cat">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/darklights.JPG" alt="" data-caption="Rain soaked street">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/gulls.JPG" alt="" data-caption="gulls by the Baltic Sea">
+                        <div class="photo-caption"></div>
+                    </div>
+                </div>
+            
+                <div class="column">
+                    <div class="photo">
+                        <img src="img/station2.JPG" alt="" data-caption="Ad for Gropius Bau">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/umbrella.jpg" alt="" data-caption="Umbrella lined street in Washington DC">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/fireworks.jpg" alt="" data-caption="Fireworks shot on an iPhone- no jkjkjkj">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/plane.jpg" alt="" data-caption="fake airport double exposure">
+                        <div class="photo-caption"></div>
+                    </div>
+                    <div class="photo">
+                        <img src="img/pond.jpg" alt="" data-caption="pond in Golden Gate park">
+                        <div class="photo-caption"></div>
+                    </div>
+                </div>
+            </div>
+            
 
         </div>
 
@@ -81,6 +129,14 @@
                     caption.textContent = 'gallery';
                 });
             });
+
+
+            photos.forEach(photo => {
+                const captionText = photo.getAttribute('data-caption');
+                const captionDiv = photo.nextElementSibling;
+                captionDiv.textContent = captionText;
+            });
+
         </script>
         
         
