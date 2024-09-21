@@ -10,15 +10,22 @@
 
 </head>
     <header>
-        <div class="logotext"><a href="index.html">embry</a></div>
+        <div class="navbar">
+            <div class="logo"><a href="index.html">embry</a></div>
+            <div class="hamburger" id="hamburger">
+                &#9776;
+            </div>
+
+        </div>
         <nav>
-                <ul>
-                    <li class="navigation"><a href="noises.html">noises</a></li> 
-                    <li class="navigation"><a href="pictures.html">pictures</a></li> 
-                    <li class="navigation"><a href="socials.html">socials</a></li> 
-                </ul>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="noises.html">noises</a></li> 
+                <li><a href="pictures.html">pictures</a></li> 
+                <li><a href="socials.html">socials</a></li> 
+            </ul>
+
         </nav>
-    </header>
+    </header>   
     <body>
 
         <video id="background-smoke" autoplay muted loop>
@@ -39,5 +46,12 @@
     <video autoplay muted loop id="background-smoke">
         <source src="background smoke.mp4" type="video/mp4">
       </video>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+        var navLinks = document.getElementById('nav-links');
+        navLinks.classList.toggle('active');
+        });            
+    </script>
     </body>
 </html>
