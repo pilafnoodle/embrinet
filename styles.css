@@ -51,7 +51,7 @@ header {
         display: flex;
         justify-content: space-between; 
         align-items: center; 
-        padding: 20px; /* Add padding if needed */
+        padding: 20px 0; /* Add padding if needed */
     }
 
     .nav-links {
