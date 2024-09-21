@@ -7,82 +7,52 @@ header {
     color: white;
     justify-content: space-between;
 }
-body {
-    margin:0;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: 40% 60%;
-    background-color: black;
-}
-footer{
-    background-color: #37393a;
-    color: aliceblue; /*text color*/
-    position:relative;
-    bottom: 0;
-    width: 100%;
-    padding:10px;
-}
-nav ul{
-    list-style-type: none;
-    display: flex;
-}
-li{
-    display:block;
-    padding: 10px;
-}
-a{
-    text-decoration:none ;
-    color: white;
-    
-}
-.navbar:hover {
-    text-shadow: 1px 1px 0 lightgray;
-}
 
-.navbar:hover{
-    font-size: 1.5em;
-    font-weight: bold;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensures the navbar takes the full width */
 }
 
 .hamburger {
-    display: none;
+    display: none; /* Hidden by default on larger screens */
     font-size: 30px;
     cursor: pointer;
     color: white;
 }
 
+.nav-links {
+    list-style-type: none;
+    display: flex; /* Flexbox layout for larger screens */
+}
+
 @media (max-width: 1200px) {
     .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 200px;
-      background-color: #333;
+        display: none; /* Hide the menu links on smaller screens */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        background-color: #333;
     }
   
     .nav-links.active {
-      display: flex;
+        display: flex; /* Show links when active on smaller screens */
     }
   
     .nav-links li {
-      margin: 10px 0;
+        margin: 10px 0;
     }
   
     .hamburger {
-      display: block;
+        display: block; /* Show the hamburger icon on smaller screens */
+        position: absolute;
+        right: 20px; /* Align the hamburger icon to the right of the screen */
     }
-    .navbar{
-        display: flex;
-        justify-content: space-between;  /* Space between logo and hamburger/menu */
-        align-items: center;             /* Vertically center both items */
+}
 
-    }
-    .navbar:hover{
-        text-shadow: none;
-    }
-  }
 
 .gallery-wrapper{
     background-color: rgb(110, 108, 108);
