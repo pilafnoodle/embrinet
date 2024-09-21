@@ -42,77 +42,10 @@ header {
 }
 
 @media (max-width: 1200px) {
-    /* Hide the menu by default on smaller screens */
-    .nav-links {
-        display: none; /* Hide the menu links on smaller screens */
-        flex-direction: column; /* Stack the links vertically */
-        position: absolute; /* Position relative to the navbar */
-        top: 60px; /* Adjust to the height of your header */
-        right: 0;
-        width: 100%; /* Full width for the mobile menu */
-        background-color: #333; /* Background color for the menu */
-        padding: 20px;
-        z-index: 100; /* Ensure the menu appears on top */
-    }
-  
-    /* Show the links when the menu is active */
-    .nav-links.active {
-        display: flex; /* Flex for vertical stacking */
-    }
-  
-    .nav-links li {
-        margin: 10px 0; /* Space between links */
-        width: 100%; /* Take up full width */
-    }
 
-    /* Hamburger icon */
-    .hamburger {
-        display: block; /* Show the hamburger icon */
-        position: absolute;
-        right: 20px; /* Align hamburger to the right */
-        font-size: 2em; /* Adjust size */
-        cursor: pointer; /* Pointer cursor on hover */
-    }
-
-    /* Ensure the logo and hamburger are aligned */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        color: white;
-    }
-
-    /* Basic reset for all elements */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    a {
-        text-decoration: none; /* Removes underline */
-        color: white; /* Sets the default link color */
-    }
-
-    .logo a {
-        color: white; /* Logo link color */
-        font-size: 1.5em; /* Logo font size */
-        font-weight: bold; /* Bold logo text */
-    }
-
-    /* Styling for nav links */
-    .nav-links li a {
-        display: block; /* Full width links */
-        text-align: center;
-        padding: 15px 0;
-        border-radius: 5px;
-    }
-
-    .nav-links li a:hover {
-        background-color: #555; /* Hover effect for links */
-    }
 }
+ 
+
 
 .gallery-wrapper{
     background-color: rgb(110, 108, 108);
