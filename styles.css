@@ -75,9 +75,10 @@ a{
     .hamburger {
       display: block;
     }
+    .navbar{
+        display: inline;
+    }
   }
-
-
 
 .gallery-wrapper{
     background-color: rgb(110, 108, 108);
