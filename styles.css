@@ -8,7 +8,7 @@ a {
 }
 header {
     background-color: rgb(126, 166, 194);
-    padding: 10px 50px;
+    padding: 30px 50px;
     font-family: 'Courier New', Courier, monospace;
     align-items: center;
     color: white;
@@ -47,17 +47,23 @@ header {
 }
 
 @media (max-width: 1200px) {
-    .nav-links {
+    .navbar {
         display: flex;
         justify-content: space-between; 
         align-items: center; 
+        padding: 20px; /* Add padding if needed */
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-around; /* Adjust this as needed */
         list-style-type: none;
         padding: 0;
         margin: 0;
     }
-    .header{
-        padding: 20px 20px 20px 0;
 
+    .nav-links li {
+        margin: 0 10px; /* Adjust spacing between links */
     }
     
 }
