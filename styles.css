@@ -1,7 +1,5 @@
 header {
     background-color: rgb(126, 166, 194);
-
-
     padding: 10px 50px;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -76,7 +74,13 @@ a{
       display: block;
     }
     .navbar{
-        display: inline;
+        display: flex;
+        justify-content: space-between;  /* Space between logo and hamburger/menu */
+        align-items: center;             /* Vertically center both items */
+
+    }
+    .navbar:hover{
+        text-shadow: none;
     }
   }
 
