@@ -24,12 +24,21 @@ header {
 
 .navbar {
     width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space between logo and hamburger */
+    align-items: center; /* Center items vertically */
 }
 
 .hamburger {
+    margin-left: auto; /* Pushes the hamburger to the right */
     display: none; /* Hide by default */
     font-size: 30px; /* Adjust size as needed */
     cursor: pointer;
+}
+
+
+.mobile-nav{
+    display: none;
 }
 
 .nav-links {
@@ -41,31 +50,33 @@ header {
 .nav-link:hover{
     text-shadow: 1px 1px 0 lightgray;
 }
-
 @media (max-width: 1200px) {
-    .nav-links {
-        display: none; /* Hide links by default */
+
+    .hamburger-nav-links {
+        display: none; /* Hide by default */
         flex-direction: column; /* Stack links vertically */
-        background-color: rgb(126, 166, 194);
-        position: absolute;
-        top: 100%; /* Position below the header */
+        background-color: #37393a;/* Match your header color */
+        padding: 10px;
+        top: 100%; /* Place it directly below the navbar */
         left: 0;
-        width: 100%;
-        z-index: 10; /* Ensure it's above other elements */
+        width: 100%; /* Full width of the screen */
+        z-index: 10; /* Ensure it appears above other content */
     }
+
+    .hamburger-nav-links.active {
+        display: flex; /* Show links when active */
+    }
+    .nav-links {
+        visibility: collapse;
+    }
+
+    .mobile-nav{
+        display: block;
+    }
+    
     .hamburger {
         display: block; /* Show hamburger button on mobile */
     }
-    .nav-links.active {
-        display: flex; /* Show links when active */
-    }
-    .navbar {
-        width: 100%;
-        display: flex;
-        justify-content: space-between; /* Space between logo and hamburger */
-        align-items: center; /* Center items vertically */
-    }
-    
     
 }
  
