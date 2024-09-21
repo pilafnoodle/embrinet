@@ -22,6 +22,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%; /* Ensures the navbar takes the full width */
+    padding: 20px;
 }
 
 .hamburger {
@@ -42,21 +43,29 @@ header {
 }
 
 @media (max-width: 1200px) {
-
+    .nav-links {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center; 
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
 }
  
-
-
 .gallery-wrapper{
     background-color: rgb(110, 108, 108);
     margin-top:10px;
     display: flex;
     gap:10px;  
     margin-left: 0;
-    width: 100vw;  
+    width: 100%;  
     padding:10px; 
-
+    
 }
+
+body{ overflow-x: hidden;}
 
 .photo {
     width: 300px; /* Smaller photo size */
