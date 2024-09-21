@@ -23,17 +23,13 @@ header {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
 }
 
 .hamburger {
-    display: none; /* Hidden by default on larger screens */
-    font-size: 30px;
+    display: none; /* Hide by default */
+    font-size: 30px; /* Adjust size as needed */
     cursor: pointer;
-    color: white;
 }
 
 .nav-links {
@@ -47,24 +43,29 @@ header {
 }
 
 @media (max-width: 1200px) {
-    .navbar {
-        display: flex;
-        justify-content: space-between; 
-        align-items: center; 
-        padding: 20px 0; /* Add padding if needed */
-    }
-
     .nav-links {
+        display: none; /* Hide links by default */
+        flex-direction: column; /* Stack links vertically */
+        background-color: rgb(126, 166, 194);
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        width: 100%;
+        z-index: 10; /* Ensure it's above other elements */
+    }
+    .hamburger {
+        display: block; /* Show hamburger button on mobile */
+    }
+    .nav-links.active {
+        display: flex; /* Show links when active */
+    }
+    .navbar {
+        width: 100%;
         display: flex;
-        justify-content: space-around; /* Adjust this as needed */
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
+        justify-content: space-between; /* Space between logo and hamburger */
+        align-items: center; /* Center items vertically */
     }
-
-    .nav-links li {
-        margin: 0 10px; /* Adjust spacing between links */
-    }
+    
     
 }
  
