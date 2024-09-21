@@ -1,11 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+a {
+    text-decoration: none; /* Removes underline */
+    color: white; /* Sets the default link color */
+}
 header {
     background-color: rgb(126, 166, 194);
     padding: 10px 50px;
     font-family: 'Courier New', Courier, monospace;
-    display: flex;
     align-items: center;
     color: white;
     justify-content: space-between;
+    margin: 0;
+    display: flex;
 }
 
 .navbar {
@@ -32,7 +41,6 @@ header {
         display: none; /* Hide the menu links on smaller screens */
         flex-direction: column;
         position: absolute;
-        top: 60px;
         right: 0;
         width: 200px;
         background-color: #333;
@@ -50,6 +58,14 @@ header {
         display: block; /* Show the hamburger icon on smaller screens */
         position: absolute;
         right: 20px; /* Align the hamburger icon to the right of the screen */
+    }
+    * {
+        margin: 0;
+        padding: 0;
+      }
+    a {
+        text-decoration: none; /* Removes underline */
+        color: white; /* Sets the default link color */
     }
 }
 
