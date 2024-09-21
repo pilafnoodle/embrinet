@@ -36,9 +36,8 @@ header {
     cursor: pointer;
 }
 
-
 .mobile-nav{
-    display: none;
+    display:none;
 }
 
 .nav-links {
@@ -50,35 +49,47 @@ header {
 .nav-link:hover{
     text-shadow: 1px 1px 0 lightgray;
 }
-@media (max-width: 1200px) {
-
-    .hamburger-nav-links {
-        display: none; /* Hide by default */
-        flex-direction: column; /* Stack links vertically */
-        background-color: #37393a;/* Match your header color */
-        padding: 10px;
-        top: 100%; /* Place it directly below the navbar */
-        left: 0;
-        width: 100%; /* Full width of the screen */
-        z-index: 10; /* Ensure it appears above other content */
-    }
-
-    .hamburger-nav-links.active {
-        display: flex; /* Show links when active */
-    }
-    .nav-links {
-        visibility: collapse;
-    }
-
-    .mobile-nav{
-        display: block;
-    }
-    
-    .hamburger {
-        display: block; /* Show hamburger button on mobile */
-    }
-    
+/* Existing CSS for the hamburger button */
+.hamburger {
+    display: none; /* Hidden by default; show only on mobile */
 }
+
+/* Show the hamburger icon on smaller screens */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Show the hamburger menu */
+    }
+
+    /* Mobile nav styles */
+    .mobile-nav {
+        display: none; /* Hidden by default */
+        background-color: rgb(110, 108, 108); /* Gray background */
+        padding: 20px; /* Padding around the links */
+        top: 100%; /* Below the header */
+        width: 100%; /* Full width */
+        z-index: 10; /* Ensure it appears above other elements */
+    }
+
+    .mobile-nav.active {
+        display: block; /* Show when active */
+    }
+
+    .nav-links {
+        display: none; /* Hide default nav links on mobile */
+    }
+
+    .nav-links.active {
+        display: flex; /* Show links when active */
+        flex-direction: column; /* Stack links vertically */
+        padding: 20px; /* Add padding for mobile */
+        background-color: rgb(110, 108, 108); /* Match mobile nav */
+    }
+
+    .nav-link {
+        margin: 10px 0; /* Space between links */
+    }
+}
+
  
 .gallery-wrapper{
     background-color: rgb(110, 108, 108);

@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 
-    <header>
+<header>
     <div class="navbar">
         <div class="logo"><a href="index.html">embry</a></div>
+        <div class="hamburger">☰</div>
     </div>
     <nav>
         <ul class="nav-links" id="nav-links">
@@ -19,10 +20,16 @@
             <li><a href="socials.html">socials</a></li> 
         </ul>
     </nav>
-    <div id="hamburger" class="hamburger">☰</div>
-
+    
+    <!-- Mobile navigation -->
+    
 </header>
-
+<ul class="mobile-nav" id="hamburger-nav-links">
+    <li><a href="noises.html">noises</a></li> 
+    <li><a href="pictures.html">pictures</a></li> 
+    <li><a href="socials.html">socials</a></li> 
+</ul>
+   
     <video id="background-smoke" autoplay muted loop>
         <source src="background smoke.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -143,12 +150,8 @@
             });
         </script>
 
-        <script>
-            document.getElementById('hamburger').addEventListener('click', function() {
-            var navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
-            });            
-        </script>
+        <script src="nav.js" defer></script>
+
         
         
     </body>
