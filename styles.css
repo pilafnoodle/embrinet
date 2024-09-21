@@ -37,18 +37,47 @@ a{
     color: white;
     
 }
-.logotext:hover {
+.navbar:hover {
     text-shadow: 1px 1px 0 lightgray;
 }
 
-.navigation:hover{
-    text-shadow: 1px 1px 0 lightgray;
-
-}
-.logotext{
+.navbar:hover{
     font-size: 1.5em;
     font-weight: bold;
 }
+
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      background-color: #333;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    .nav-links li {
+      margin: 10px 0;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }
+
+
 
 .gallery-wrapper{
     background-color: rgb(110, 108, 108);
