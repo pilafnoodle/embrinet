@@ -21,33 +21,27 @@ header {
 * {
     box-sizing: border-box;
 }
-
 .logo{
     font-size: 1.5em;
 }
-
-
 .navbar {
     width: 100%;
     display: flex;
     justify-content: space-between; /* Space between logo and hamburger */
     align-items: center; /* Center items vertically */
 }
-
 .hamburger {
     margin-left: auto; /* Pushes the hamburger to the right */
     display: none; /* Hide by default */
     font-size: 30px; /* Adjust size as needed */
     cursor: pointer;
 }
-
 .mobile-nav{
     display:none;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     list-style-type: none;
 }
-
 .nav-links {
     display: flex; /* Flexbox layout for larger screens */
     padding: 10px;
@@ -58,12 +52,9 @@ header {
     text-shadow: 2px 1px 0 gray;
     text-decoration: underline;
 }
-/* Existing CSS for the hamburger button */
 .hamburger {
     display: none; /* Hidden by default; show only on mobile */
 }
-
-/* Show the hamburger icon on smaller screens */
 @media (max-width: 1200px) {
     .hamburger {
         display: block; /* Show the hamburger menu */
@@ -112,12 +103,17 @@ header {
         border-radius: 1%;
     }
 
- 
-   
+    
 }
 
- 
-.gallery-wrapper{
+iframe{
+    max-width: 800px;
+    max-height: 150px;
+    padding: 20px;
+}
+
+
+ .gallery-wrapper{
     background-color: rgb(110, 108, 108);
     margin-top:10px;
     display: flex;
@@ -152,8 +148,6 @@ body{ overflow-x: hidden;}
     display: flex;
     gap: 20px; /* Optional: add some space between the gallery and the caption */
 }
-
-
 #caption-wrapper {
     position: sticky;
     top: 10px; /* Sticky effect starts 10px from the top */
@@ -225,8 +219,6 @@ body{ overflow-x: hidden;}
         text-indent: 0;
         text-align: left;
     }
-
-    
 }
 
 p{
@@ -303,20 +295,5 @@ h1{
     color: white;
     margin: 20px;
 }
-
-iframe{
-    padding:50px 100px;
-    max-width: 900px;
-    
-}
-
-
-
-
-
-
-
-
-
 
 
