@@ -38,13 +38,16 @@ header {
 
 .mobile-nav{
     display:none;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    list-style-type: none;
 }
 
 .nav-links {
-    list-style-type: none;
     display: flex; /* Flexbox layout for larger screens */
     padding: 10px;
     gap: 20px;
+    list-style-type: none;
 }
 .nav-link:hover{
     text-shadow: 1px 1px 0 lightgray;
@@ -63,7 +66,7 @@ header {
     /* Mobile nav styles */
     .mobile-nav {
         display: none; /* Hidden by default */
-        background-color: rgb(110, 108, 108); /* Gray background */
+        background-color: #37393a;
         padding: 20px; /* Padding around the links */
         top: 100%; /* Below the header */
         width: 100%; /* Full width */
@@ -81,13 +84,15 @@ header {
     .nav-links.active {
         display: flex; /* Show links when active */
         flex-direction: column; /* Stack links vertically */
-        padding: 20px; /* Add padding for mobile */
-        background-color: rgb(110, 108, 108); /* Match mobile nav */
+        padding: 30px; /* Add padding for mobile */
+        background-color: #37393a /* Match mobile nav */
     }
 
-    .nav-link {
-        margin: 10px 0; /* Space between links */
+    .mobile-link {
+        margin: 20px 0; /* Space between links */
     }
+
+    
 }
 
  
