@@ -22,6 +22,11 @@ header {
     box-sizing: border-box;
 }
 
+.logo{
+    font-size: 1.5em;
+}
+
+
 .navbar {
     width: 100%;
     display: flex;
@@ -49,8 +54,9 @@ header {
     gap: 20px;
     list-style-type: none;
 }
-.nav-link:hover{
-    text-shadow: 1px 1px 0 lightgray;
+.nav-link:hover, .logo:hover{
+    text-shadow: 2px 1px 0 gray;
+    text-decoration: underline;
 }
 /* Existing CSS for the hamburger button */
 .hamburger {
@@ -58,7 +64,7 @@ header {
 }
 
 /* Show the hamburger icon on smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .hamburger {
         display: block; /* Show the hamburger menu */
     }
@@ -90,6 +96,14 @@ header {
 
     .mobile-link {
         margin: 20px 0; /* Space between links */
+    }
+    .logo:hover{
+        text-shadow: none;
+        text-decoration: none;
+    }
+    .hyperlink li{
+        width: 50%;
+
     }
 
     
@@ -222,7 +236,7 @@ p{
     display: block;
     background-color:  rgb(109, 161, 198);
     border-radius: 5px;
-    width: 50%;
+    width: 40%;
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
