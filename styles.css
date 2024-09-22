@@ -106,16 +106,13 @@ header {
         width:50%;
     }
 
-    .song img{
-        width:50%;
-        height: auto;
-        margin-top: 30px;
-        border-radius: 5px;
-        height: auto;
+    .song img {
+        width: 40%; 
+       
     }
-   
 
-    
+
+   
 }
 
  
@@ -286,40 +283,37 @@ p{
 }
 
 
-.song{
-    border-radius: 1%;
-    font-family: 'Courier New', Courier, monospace;
-    color: white;
+#song-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically if needed */
     text-align: center;
-    text-decoration: none;
-
+    padding: 20px; /* Optional: add padding around the content */
+    width: 100%;
 }
 
-.song img{
-    width:23%;
+.song img {
+    width: 25%; /* Make the size adjustable */
+    height: auto; /* Maintain aspect ratio */
     margin-top: 30px;
     border-radius: 5px;
     transition: transform 0.3s ease;
-    height: auto;
 }
 
-#song-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-
+.song-caption {
+    margin-top: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
 }
 
 .song-embed {
-    width: 40%;    /* Set the iframe width relative to its container */
-    margin-top: 35px;
+    width: 60%; /* Set the width relative to its container */
+    margin-top: 20px;
 }
 
-.song-embed,.song img:hover{
-    cursor: pointer;
-    transform: scale(1.02);
-
+.song img:hover, .song-embed:hover {
+    transform: scale(1.05); /* Optional: Add a hover effect */
 }
 
 
