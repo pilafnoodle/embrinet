@@ -101,10 +101,19 @@ header {
         text-shadow: none;
         text-decoration: none;
     }
-    .hyperlink li{
-        width: 50%;
 
+    .hyperlink li{
+        width:50%;
     }
+
+    .song img{
+        width:50%;
+        height: auto;
+        margin-top: 30px;
+        border-radius: 5px;
+        height: auto;
+    }
+   
 
     
 }
