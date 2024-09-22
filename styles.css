@@ -243,7 +243,8 @@ p{
     display: block;
     background-color:  rgb(109, 161, 198);
     border-radius: 5px;
-    width: 40%;
+    max-width: 600px;
+    min-width: 300px;
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
