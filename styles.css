@@ -109,7 +109,7 @@ header {
 iframe{
     max-width: 800px;
     max-height: 150px;
-    padding: 20px;
+    padding: 30px;
 }
 
 
@@ -223,6 +223,7 @@ body{ overflow-x: hidden;}
 
 p{
         color: white;
+        font-family: 'Courier New', Courier, monospace;
 }
 
 .hyperlink {
@@ -262,7 +263,8 @@ p{
     padding:0px;
     align-items: center;
     display:flex;
-    justify-content: center;
+    flex-direction: column;
+
 }
 
 #background-smoke {
