@@ -132,7 +132,7 @@ function ripplePixels(){
             
             
         
-            brightnessArray[i][j] = (downBrightness*0.45 + upBrightness*0.45 + rightBrightness*0.1) / (0.45 + 0.45 + 0.1);
+            brightnessArray[i][j] = (downBrightness*0.45 + upBrightness*0.45 + rightBrightness*0.15)/(0.45+0.45+0.15) ;
             if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
 
             //the color of every pixel depends on the ones next to it
@@ -187,6 +187,9 @@ class Fih{
             ctx.textAlign = "right";
         }
         ctx.fillText(this.text, this.posX, this.posY);
+    }
+    isClicked(){
+
     }
 }
 
