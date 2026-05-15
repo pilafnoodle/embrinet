@@ -3,23 +3,26 @@ const img = new Image();
 const canvas=document.getElementById("canvas")
 const ctx=canvas.getContext("2d")
 
-canvas.width = window.innerWidth;
 
 img.src='img/fishpond.png';
 
-pwidth=10
-pheight=60
+pwidth=30
+pheight=15
 blockArray = []; //stores original image blocks
 brightnessArray=[]; //stores brightness  (ajust alpha value)
+lastBrightnessArray=[];
 forceArray=[]; //stores the direction of the last movement up,down,left,right
 //these are processed pixel cols and rows, not raw pixel cols and rows
 cols=0;
 rows=0;
-
 let pixelatedCanvas=null;
 
 img.onload = () => {
     canvas.height = window.innerWidth * (img.height / img.width); 
+
+    canvas.height = Math.floor(canvas.height / pheight) * pheight+pheight;
+    canvas.width = Math.floor(window.innerWidth / pwidth) * pwidth;
+
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
 
@@ -31,7 +34,12 @@ img.onload = () => {
     for(let i=0; i<canvas.width/pwidth ;i++){
         blockArray[i] = [];
         brightnessArray[i] = [];
+        forceArray[i] = [];
+        lastBrightnessArray[i]=[];
+
+
         for (let j=0; j<canvas.height/pheight; j++){
+
             x=i*pwidth
             y=j*pheight
             pos=(x+y*canvas.width)*4
@@ -40,34 +48,44 @@ img.onload = () => {
             b=imageData[pos+2]
             blockArray[i][j] = 0.299*r + 0.587*g + 0.114*b;
             brightnessArray[i][j] = 0 //everything dark brightness
-           // forceArray[i][j] = 0 //everything dark brightness
+            lastBrightnessArray[i][j]=0;
 
+            const forceVector = { x: 0, y: 0 };
+            forceArray[i][j] = forceVector //everything is at 0 force initially
         }
     }
 
-    update();
-    randomBlinks();
-    fadePixels();
-    spawnFish();
-    FihRipple();
-
+    requestAnimationFrame(drawAll);
 };
 
-function update(){ //dispalys based on brightness array and moves the
+function drawAll(){
 
+    FihRipple();
+    ripplePixels();
+    updateBrightness();
+    spawnFish();
+
+    requestAnimationFrame(drawAll);
+}
+
+//also updates force array to decay
+function updateBrightness(){ //dispalys based on brightness array and moves the
     ctx.drawImage(pixelatedCanvas,0,0,canvas.width,canvas.height);
     for (let i=0; i<cols;i++){
         for (let j=0; j<rows;j++){
             brightness=brightnessArray[i][j]
             ctx.fillStyle = `rgba(0, 0, 0, ${1 - brightness/255})`;  //last param is alpha, higher brightness means 1-1=0, so completely transparent
             ctx.fillRect(i*pwidth,j*pheight,pwidth,pheight);
+    
+            forceArray[i][j].x =  forceArray[i][j].x * Math.exp(-0.02);
+            forceArray[i][j].y = forceArray[i][j].y * Math.exp(-0.02);
         }
     }
-
-    requestAnimationFrame(update);
+    
+    // requestAnimationFrame(update);
 }
 
-
+/*
 currentTick=0;
 targetTime=0;
 function randomBlinks(time){
@@ -94,19 +112,37 @@ function fadePixels(){
         }
     }
     requestAnimationFrame(fadePixels);
-}
+}*/
+const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 function ripplePixels(){
-    
-    for (let i=0; i<cols;i++){
-        for (let j=0; j<rows;j++){
+    lastBrightnessArray = brightnessArray.map(col => [...col]);
+    for (let i=0; i<cols;i++){ 
 
-            // brightnessArray[i][j] = brightnessArray[i][j] * Math.exp(-0.06);
-            brightnessArray[i][j] = brightnessArray[i][j] * Math.exp(-0.06);
+        for (let j=1; j<rows-1; j++){
+         
+            rightBrightness=0;
+            lastBrightnessArray[i][j]=lastBrightnessArray[i][j]*0.99
+            upBrightness=0
+            if(j%1==0 && i!==0){ //higher the 2, the shorter the trail is
+                rightBrightness=lastBrightnessArray[i-1][j] //this is for left going fish
+            }
+            upBrightness=lastBrightnessArray[i][j-1]
+            downBrightness=lastBrightnessArray[i][j+1]
+            
+            
+        
+            brightnessArray[i][j] = (downBrightness*0.45 + upBrightness*0.45 + rightBrightness*0.1) / (0.45 + 0.45 + 0.1);
+            if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
 
+            //the color of every pixel depends on the ones next to it
+
+            //pixel brightness depends on the force
+            //
         }
     }
-    requestAnimationFrame(fadePixels);
+
+    // requestAnimationFrame(ripplePixels);
 }
 
 
@@ -151,30 +187,21 @@ class Fih{
             ctx.textAlign = "right";
         }
         ctx.fillText(this.text, this.posX, this.posY);
-
     }
 }
 
 fihArray=[]
 const linkMap = new Map();
-linkMap.set("+","embri.net")
-linkMap.set("+++++++++","embri.net")
-
-// linkMap.set("Rivulets","embri.net")
-// linkMap.set("Cascade","embri.net")
-// linkMap.set("Memory","embri.net")
-// linkMap.set("Iris","embri.net")
-// linkMap.set("Bandcamp","embri.net")
-// linkMap.set("EMBRI","embri.net")
-// linkMap.set("Emergent","embri.net")
-// linkMap.set("Green","embri.net")
-// linkMap.set("Fleeting","embri.net")
-// linkMap.set("Prismatic","embri.net")
-// linkMap.set("Sea","embri.net")
-// linkMap.set("Sunvault","embri.net")
-// linkMap.set("Traces","embri.net")
-// linkMap.set("Wings","embri.net")
-// linkMap.set("Consonance","embri.net")
+linkMap.set("++","embri.net")
+linkMap.set("Rivulets","embri.net")
+linkMap.set("Cascade","embri.net")
+linkMap.set("Memory","embri.net")
+linkMap.set("Embri","embri.net")
+linkMap.set("Emergent","embri.net")
+linkMap.set("Fleeting","embri.net")
+linkMap.set("Sunvault","embri.net")
+linkMap.set("Traces","embri.net")
+linkMap.set("Wings","embri.net")
 
 fihSpawnTick=0;
 fihSpawnInterval=0;
@@ -184,25 +211,24 @@ function spawnFish(){
         //console.log(fihArray.length)
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
-        if (fihArray.length<3){
-            let fontSize=Math.random()*10+20;
+        if (fihArray.length<5){
+            let fontSize=Math.random()*5+20;
             const textOptions = Array.from(linkMap.keys()); 
             randomText = textOptions[Math.floor(Math.random() * textOptions.length)];
-
+            console.log("All options:", textOptions);
+            console.log("Picked:", randomText);
             //the spawn height has to be normalized to the center of a pixel
             //textfill is bottom left and pixel starts from right going fish, good because i want the ripple to start from the tail
             //now the qustion is how do i get the height from the mid line of the font
 
-            raw_spawn= Math.random()* (window.innerHeight )-20 //raw pixel height, need to find nearest pixel that is multiple of pheight
+            raw_spawn= Math.random()* (window.innerHeight -50) //raw pixel height, need to find nearest pixel that is multiple of pheight
             spawnHeight = Math.round(raw_spawn / pheight) * pheight + (0.5*pheight) + (0.5*fontSize)         //fin the nearest pixel edge
-            
-            
             console.log(spawnHeight);
-            direction = Math.random() < 0.5 ? "left": "right"; //put this back
-            speed=Math.random()*3+1;
+            direction ="left"// Math.random() < 0.5 ? "left": "right"; //put this back
+            speed=Math.random()*3+2;
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray>=3){
+        }else if(fihArray>=5){
             fihArray.shift();
         }
     }
@@ -213,7 +239,7 @@ function spawnFish(){
     
     
     fihSpawnTick++;
-    requestAnimationFrame(spawnFish);
+    // requestAnimationFrame(spawnFish);
 }
 
 //darkens pixels where a Fih hits
@@ -224,38 +250,39 @@ function FihRipple(){
 
         if (pixelatedX >= 0 && pixelatedX < cols && pixelatedY >= 0 && pixelatedY < rows){
             brightnessArray[pixelatedX][pixelatedY] = 255 //12 characters long for max brightness
+            forceArray[pixelatedX][pixelatedY] = fihArray[i].direction === "left" ? {x: -1, y: 0} : {x: 1, y: 0};       
         }
     }
-    requestAnimationFrame(FihRipple);
+    // requestAnimationFrame(FihRipple);
 }
 
 
 
 function pixelateImage(originalImage, pwidth, pheight, destx,desty, drawWidth,drawHeight) {
-  const offscreen = document.createElement("canvas"); 
-  const context = offscreen.getContext("2d");
+const offscreen = document.createElement("canvas"); 
+const context = offscreen.getContext("2d");
 
 
-  offscreen.width = drawWidth;
-  offscreen.height = drawHeight;
-  context.drawImage(originalImage, 0, 0, drawWidth, drawHeight);
+offscreen.width = drawWidth;
+offscreen.height = drawHeight;
+context.drawImage(originalImage, 0, 0, drawWidth, drawHeight);
 
-  const originalImageData = context.getImageData(0, 0, drawWidth, drawHeight).data;
+const originalImageData = context.getImageData(0, 0, drawWidth, drawHeight).data;
 
     for (let y = 0; y < drawHeight; y += pheight) {
-      for (let x = 0; x < drawWidth; x += pwidth) {
+    for (let x = 0; x < drawWidth; x += pwidth) {
         const pixelIndexPosition = (x + y * drawWidth) * 4;
         context.fillStyle = `rgba(
-          ${originalImageData[pixelIndexPosition]},
-          ${originalImageData[pixelIndexPosition + 1]},
-          ${originalImageData[pixelIndexPosition + 2]},
-          ${originalImageData[pixelIndexPosition + 3]}
+        ${originalImageData[pixelIndexPosition]},
+        ${originalImageData[pixelIndexPosition + 1]},
+        ${originalImageData[pixelIndexPosition + 2]},
+        ${originalImageData[pixelIndexPosition + 3]}
         )`;
         context.fillRect(x, y, pwidth, pheight);
-      }
     }
-  
+    }
 
-  ctx.drawImage(offscreen, destx, desty, drawWidth, drawHeight);
-  return offscreen;
+
+ctx.drawImage(offscreen, destx, desty, drawWidth, drawHeight);
+return offscreen;
 }
