@@ -18,11 +18,8 @@ rows=0;
 let pixelatedCanvas=null;
 
 img.onload = () => {
-    canvas.height = window.innerWidth * (img.height / img.width); 
-
-    canvas.height = Math.floor(canvas.height / pheight) * pheight+pheight;
     canvas.width = Math.floor(window.innerWidth / pwidth) * pwidth;
-
+    canvas.height = Math.floor(window.innerHeight / pheight) * pheight;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
 
@@ -55,16 +52,15 @@ img.onload = () => {
         }
     }
 
-    requestAnimationFrame(drawAll);
+    drawAll();
 };
 
 function drawAll(){
+    ripplePixels(); // calculates brightness of every point
+    updateBrightness(); // applies it
 
+    spawnFish();//checks if i should spawn a new
     FihRipple();
-    ripplePixels();
-    updateBrightness();
-    spawnFish();
-
     requestAnimationFrame(drawAll);
 }
 
@@ -75,14 +71,11 @@ function updateBrightness(){ //dispalys based on brightness array and moves the
         for (let j=0; j<rows;j++){
             brightness=brightnessArray[i][j]
             ctx.fillStyle = `rgba(0, 0, 0, ${1 - brightness/255})`;  //last param is alpha, higher brightness means 1-1=0, so completely transparent
-            ctx.fillRect(i*pwidth,j*pheight,pwidth,pheight);
-    
+            ctx.fillRect(i*pwidth,j*pheight,pwidth,pheight);    
             forceArray[i][j].x =  forceArray[i][j].x * Math.exp(-0.02);
             forceArray[i][j].y = forceArray[i][j].y * Math.exp(-0.02);
         }
     }
-    
-    // requestAnimationFrame(update);
 }
 
 /*
@@ -115,6 +108,9 @@ function fadePixels(){
 }*/
 const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
+
+var LastBrightnessCoeff = document.getElementById("LastBrightnessCoeffSlider");
+
 function ripplePixels(){
     lastBrightnessArray = brightnessArray.map(col => [...col]);
     for (let i=0; i<cols;i++){ 
@@ -122,27 +118,18 @@ function ripplePixels(){
         for (let j=1; j<rows-1; j++){
          
             rightBrightness=0;
-            lastBrightnessArray[i][j]=lastBrightnessArray[i][j]*0.99
-            upBrightness=0
-            if(j%1==0 && i!==0){ //higher the 2, the shorter the trail is
+            if(j%1==0 && i!==0){ 
                 rightBrightness=lastBrightnessArray[i-1][j] //this is for left going fish
             }
             upBrightness=lastBrightnessArray[i][j-1]
-            downBrightness=lastBrightnessArray[i][j+1]
-            
-            
-        
-            brightnessArray[i][j] = (downBrightness*0.45 + upBrightness*0.45 + rightBrightness*0.15)/(0.45+0.45+0.15) ;
+            if(j!==rows-1){
+                downBrightness=lastBrightnessArray[i][j+1] 
+            }
+            brightnessArray[i][j] = lastBrightnessArray[i][j]*0.2 + ( downBrightness*0.2 + upBrightness*0.2 + rightBrightness*0.1)/(0.6);
+           // brightnessArray[i][j] = brightnessArray[i][j]* 0.6;
             if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
-
-            //the color of every pixel depends on the ones next to it
-
-            //pixel brightness depends on the force
-            //
         }
     }
-
-    // requestAnimationFrame(ripplePixels);
 }
 
 
@@ -218,17 +205,18 @@ function spawnFish(){
             let fontSize=Math.random()*5+20;
             const textOptions = Array.from(linkMap.keys()); 
             randomText = textOptions[Math.floor(Math.random() * textOptions.length)];
-            console.log("All options:", textOptions);
+            console.log("all options:", textOptions);
             console.log("Picked:", randomText);
             //the spawn height has to be normalized to the center of a pixel
             //textfill is bottom left and pixel starts from right going fish, good because i want the ripple to start from the tail
             //now the qustion is how do i get the height from the mid line of the font
 
-            raw_spawn= Math.random()* (window.innerHeight -50) //raw pixel height, need to find nearest pixel that is multiple of pheight
-            spawnHeight = Math.round(raw_spawn / pheight) * pheight + (0.5*pheight) + (0.5*fontSize)         //fin the nearest pixel edge
+            raw_spawn= Math.random()* (window.innerHeight ) //raw pixel height, need to find nearest pixel that is multiple of pheight
+            spawnHeight = Math.round(raw_spawn / pheight) * pheight + (0.5*pheight) + (0.5*fontSize) -pheight
+                    //fin the nearest pixel edge
             console.log(spawnHeight);
             direction ="left"// Math.random() < 0.5 ? "left": "right"; //put this back
-            speed=Math.random()*3+2;
+            speed=Math.random()*3+2.5;
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
         }else if(fihArray>=5){
