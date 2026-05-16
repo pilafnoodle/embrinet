@@ -19,6 +19,8 @@ canvas {
     margin: 0;
     z-index: 0;
     pointer-events: none;
+    width: 100%;
+    height: 100%;
 
         
 }
@@ -112,4 +114,68 @@ canvas {
     font-size: 20px;
     z-index: 2;
     
+}
+#menu-button{
+    display: none;
+    color: white;
+    background-color: transparent;
+    left: 10px;
+    bottom: 10px;
+    position: fixed;
+}   
+
+.bottom-sheet{
+    display: none;
+}
+
+.text-content{
+    display: block;
+}
+
+
+/* Mobile: Screen is narrow OR the device uses touch */
+@media (max-width: 768px), (pointer: coarse) {
+    .checkbox-container{
+        display: none;
+    }
+    .controls-container { /*desktop*/
+        display: none;
+        position: fixed;
+        flex-direction: column; /* Stack sliders for thumb access */
+        gap: 30px; 
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .slider{
+        width: 90vw;
+    }
+    .slider-set {
+        align-items: center;
+    }
+
+    #controls-container.open {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        bottom: 80px;
+    }
+
+    .text-content.open{
+        display: none;
+    }
+
+    #menu-button{
+        display: block;
+        font-size: 30px;
+        z-index: 5;
+    }
+    ::-webkit-scrollbar {
+        /* width: 10px;
+        position: fixed;
+        background-color: transparent; */
+        display: none;
+    }
+
 }

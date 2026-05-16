@@ -13,11 +13,11 @@
 
         <canvas id="canvas"></canvas>
 
-        <div class="controls-container">
+        <div class="controls-container" id="controls-container">
 
             <div class="slider-set">
                 <label class="slider-label" for="LastBrightnessCoeffSlider">Decay Coeff.</label>
-                <input type="range" min="0.0" max="0.5" step ="0.01" value="0.2" class="slider" id="LastBrightnessCoeffSlider"> 
+                <input type="range" min="0.0" max="0.4" step ="0.01" value="0.2" class="slider" id="LastBrightnessCoeffSlider"> 
             </div>
             <div class="slider-set">
                 <label class="slider-label" for="VertPropSlider">Vert. Propagation</label>
@@ -32,15 +32,14 @@
 </div>
 
         <div class="checkbox-container">
-
-        <label for="show-controls-box">Open Simulator Controls</label>
-        <input type="checkbox" id="show-controls-box">
-
-
+            <label for="show-controls-box">Open Simulator Controls</label>
+                <input type="checkbox" id="show-controls-box">
         </div>    
+        
+        <button id="menu-button">
+            <span>Δ </span> </button>
 
-
-
+    <div id="text-content" class="text-content">
     <div id ="title">
         <h1>Embri.net</h1>
         <p>Cascade Memory</p>
@@ -51,6 +50,7 @@
     </div>
 
     <div id="footer">Thank you for visiting :D</div>
+    </div>
 
     <script src="ripple.js"></script>
 

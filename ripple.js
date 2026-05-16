@@ -159,10 +159,7 @@ function ripplePixels(){
             upBrightness=lastBrightnessArray[i][j-1]
             if(j!==rows-1){
                 downBrightness=lastBrightnessArray[i][j+1] 
-            }
-            //let normalizeCoeff = parseFloat(VertPropSlider.value) * 2 + parseFloat(HorizPropSlider.value);
-           // brightnessArray[i][j] = lastBrightnessArray[i][j]*0.2 + ( downBrightness*0.2 + upBrightness*0.2 + rightBrightness*0.1)/(0.6);
-           
+            }           
             brightnessArray[i][j] = lastBrightnessArray[i][j]*LastBrightnessCoeff + ( downBrightness*VertProp + upBrightness*VertProp + rightBrightness*HorizProp)/(normalizeCoeff);
            // brightnessArray[i][j] = brightnessArray[i][j]* 0.6;
             if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
@@ -220,12 +217,12 @@ class Fih{
 
 fihArray=[]
 const linkMap = new Map();
-linkMap.set("++","embri.net")
 linkMap.set("Rivulets","embri.net")
 linkMap.set("Cascade","embri.net")
 linkMap.set("Memory","embri.net")
 linkMap.set("Embri","embri.net")
 linkMap.set("Emergent","embri.net")
+linkMap.set("Chrysalis","embri.net")
 linkMap.set("Fleeting","embri.net")
 linkMap.set("Sunvault","embri.net")
 linkMap.set("Traces","embri.net")
@@ -235,11 +232,9 @@ fihSpawnTick=0;
 fihSpawnInterval=0;
 function spawnFish(){
     if(fihSpawnTick>fihSpawnInterval){
-
-        //console.log(fihArray.length)
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
-        if (fihArray.length<1){
+        if (fihArray.length<5){
             let fontSize=Math.random()*5+20;
             const textOptions = Array.from(linkMap.keys()); 
             randomText = textOptions[Math.floor(Math.random() * textOptions.length)];
@@ -257,7 +252,7 @@ function spawnFish(){
             speed=Math.random()*3+2.5;
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray>=2){
+        }else if(fihArray>=5){
             fihArray.shift();
         }
     }
@@ -313,3 +308,12 @@ const originalImageData = context.getImageData(0, 0, drawWidth, drawHeight).data
 ctx.drawImage(offscreen, destx, desty, drawWidth, drawHeight);
 return offscreen;
 }
+
+const menuBtn = document.getElementById('menu-button');
+const sheet = document.getElementById('controls-container');
+const textContent=document.getElementById('text-content')
+menuBtn.addEventListener('click', () => {
+    sheet.classList.toggle('open');
+    textContent.classList.toggle('open');
+
+});
