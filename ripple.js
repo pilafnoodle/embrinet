@@ -109,7 +109,42 @@ function fadePixels(){
 const avg = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 
-var LastBrightnessCoeff = document.getElementById("LastBrightnessCoeffSlider");
+var LastBrightnessCoeffSlider = document.getElementById("LastBrightnessCoeffSlider");
+var LastBrightnessCoeff = parseFloat(LastBrightnessCoeffSlider.value); 
+
+LastBrightnessCoeffSlider.addEventListener("input", () => {
+    LastBrightnessCoeff = parseFloat(LastBrightnessCoeffSlider.value);
+    normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+})
+
+var VertPropSlider = document.getElementById("VertPropSlider");
+var VertProp = parseFloat(VertPropSlider.value); 
+
+VertPropSlider.addEventListener("input", () => {
+    VertProp = parseFloat(VertPropSlider.value);
+    normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+})
+
+var HorizPropSlider = document.getElementById("HorizPropSlider");
+var HorizProp = parseFloat(HorizPropSlider.value); 
+
+HorizPropSlider.addEventListener("input", () => {
+    let rawValue = parseFloat(HorizPropSlider.value);
+    HorizProp = (0.3 + 0.05) - rawValue;
+    normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+})
+var normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+
+var showControlsBox = document.getElementById("show-controls-box");
+var controlsContainer = document.querySelector(".controls-container"); 
+
+showControlsBox.addEventListener("change", () => {
+    if (showControlsBox.checked) {
+        controlsContainer.style.display = "flex"; 
+    } else {
+        controlsContainer.style.display = "none";
+    }
+});
 
 function ripplePixels(){
     lastBrightnessArray = brightnessArray.map(col => [...col]);
@@ -125,7 +160,10 @@ function ripplePixels(){
             if(j!==rows-1){
                 downBrightness=lastBrightnessArray[i][j+1] 
             }
-            brightnessArray[i][j] = lastBrightnessArray[i][j]*0.2 + ( downBrightness*0.2 + upBrightness*0.2 + rightBrightness*0.1)/(0.6);
+            //let normalizeCoeff = parseFloat(VertPropSlider.value) * 2 + parseFloat(HorizPropSlider.value);
+           // brightnessArray[i][j] = lastBrightnessArray[i][j]*0.2 + ( downBrightness*0.2 + upBrightness*0.2 + rightBrightness*0.1)/(0.6);
+           
+            brightnessArray[i][j] = lastBrightnessArray[i][j]*LastBrightnessCoeff + ( downBrightness*VertProp + upBrightness*VertProp + rightBrightness*HorizProp)/(normalizeCoeff);
            // brightnessArray[i][j] = brightnessArray[i][j]* 0.6;
             if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
         }
@@ -201,7 +239,7 @@ function spawnFish(){
         //console.log(fihArray.length)
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
-        if (fihArray.length<5){
+        if (fihArray.length<1){
             let fontSize=Math.random()*5+20;
             const textOptions = Array.from(linkMap.keys()); 
             randomText = textOptions[Math.floor(Math.random() * textOptions.length)];
@@ -219,7 +257,7 @@ function spawnFish(){
             speed=Math.random()*3+2.5;
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray>=5){
+        }else if(fihArray>=2){
             fihArray.shift();
         }
     }
@@ -246,8 +284,6 @@ function FihRipple(){
     }
     // requestAnimationFrame(FihRipple);
 }
-
-
 
 function pixelateImage(originalImage, pwidth, pheight, destx,desty, drawWidth,drawHeight) {
 const offscreen = document.createElement("canvas"); 

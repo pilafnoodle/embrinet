@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #000;
+    background-color: black;
 /* #    height: 100vh; */
     overflow-y: auto;
 }
@@ -17,8 +17,10 @@ html {
 canvas {
     display: block;
     margin: 0;
-    z-index: 1;
-    
+    z-index: 0;
+    pointer-events: none;
+
+        
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -66,8 +68,48 @@ canvas {
     padding-bottom: 40px;
 }
 
+.slider {
+    width: 200px; /* Increase this number to make them longer */
+    cursor: pointer;
+    accent-color: #ff0077; /* Set this to your fluid's color */
+
+}
+
+.slider:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
 .slider-label{
     font-family: monospace;
     color: white;
     font-size: 20px;
+    z-index: 2;
+}
+
+.slider-set {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: left;    /* Center label under slider */
+                 /* Space between slider and label */
+}
+
+.controls-container{
+    gap: 40px;
+    position: absolute;
+    z-index: 2;
+    display: none;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 10px;
+}
+
+.checkbox-container{
+
+    font-family: monospace;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    z-index: 2;
+    
 }

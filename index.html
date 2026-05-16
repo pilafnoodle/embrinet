@@ -9,15 +9,37 @@
 
 
 <body>
-<canvas id="canvas"></canvas>
-    <div class="slidecontainer">
-        <!-- <label class="slider-label" for="LastBrightnessCoeffSlider">Last Brightness Coefficient</label>
-        <input type="range" min="0.0" max="0.99" value="0.2" class="slider" id="LastBrightnessCoeffSlider">  -->
+<div id="fluid-simulator">
 
-    </div>
+        <canvas id="canvas"></canvas>
+
+        <div class="controls-container">
+
+            <div class="slider-set">
+                <label class="slider-label" for="LastBrightnessCoeffSlider">Decay Coeff.</label>
+                <input type="range" min="0.0" max="0.5" step ="0.01" value="0.2" class="slider" id="LastBrightnessCoeffSlider"> 
+            </div>
+            <div class="slider-set">
+                <label class="slider-label" for="VertPropSlider">Vert. Propagation</label>
+                <input type="range" min="0.05" max="0.7" step ="0.01" value="0.2" class="slider" id="VertPropSlider"> 
+            </div>
+            <div class="slider-set">
+                <label class="slider-label" for="HorizPropSlider">Horiz. Propagation</label>
+                <input type="range" min="0.05" max="0.4" step ="0.01" value="0.1" class="slider" id="HorizPropSlider">
+            </div>
+ 
+        </div>
+</div>
+
+        <div class="checkbox-container">
+
+        <label for="show-controls-box">Open Simulator Controls</label>
+        <input type="checkbox" id="show-controls-box">
 
 
-    <script src="ripple.js"></script>
+        </div>    
+
+
 
     <div id ="title">
         <h1>Embri.net</h1>
@@ -30,6 +52,7 @@
 
     <div id="footer">Thank you for visiting :D</div>
 
+    <script src="ripple.js"></script>
 
 </body>
 </html>
