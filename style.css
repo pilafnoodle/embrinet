@@ -191,6 +191,9 @@ html, body {
 
         display: none;
     }
+    h1{
+        font-size: 25px;
+    }
 
     #cover-art {
         height: 70vw;
