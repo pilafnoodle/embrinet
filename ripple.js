@@ -114,7 +114,7 @@ var LastBrightnessCoeff = parseFloat(LastBrightnessCoeffSlider.value);
 
 LastBrightnessCoeffSlider.addEventListener("input", () => {
     LastBrightnessCoeff = parseFloat(LastBrightnessCoeffSlider.value);
-    normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+    normalizeCoeff = ((VertProp * 2) + HorizProp) ;
 })
 
 var VertPropSlider = document.getElementById("VertPropSlider");
@@ -122,18 +122,18 @@ var VertProp = parseFloat(VertPropSlider.value);
 
 VertPropSlider.addEventListener("input", () => {
     VertProp = parseFloat(VertPropSlider.value);
-    normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+    normalizeCoeff = ((VertProp * 2) + HorizProp);
 })
 
 var HorizPropSlider = document.getElementById("HorizPropSlider");
 var HorizProp = parseFloat(HorizPropSlider.value); 
 
 HorizPropSlider.addEventListener("input", () => {
-    let rawValue = parseFloat(HorizPropSlider.value);
-    HorizProp = (0.3 + 0.05) - rawValue;
-    normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+    HorizProp = parseFloat(HorizPropSlider.value);
+   // HorizProp = (0.3 + 0.05) - rawValue;
+    normalizeCoeff = ((VertProp * 2) + HorizProp) ;
 })
-var normalizeCoeff = ((VertProp * 2) + HorizProp) * (6/5);
+var normalizeCoeff = ((VertProp * 2) + HorizProp) ;
 
 var showControlsBox = document.getElementById("show-controls-box");
 var controlsContainer = document.querySelector(".controls-container"); 
@@ -159,10 +159,13 @@ function ripplePixels(){
             upBrightness=lastBrightnessArray[i][j-1]
             if(j!==rows-1){
                 downBrightness=lastBrightnessArray[i][j+1] 
-            }           
-            brightnessArray[i][j] = lastBrightnessArray[i][j]*LastBrightnessCoeff + ( downBrightness*VertProp + upBrightness*VertProp + rightBrightness*HorizProp)/(normalizeCoeff);
+            } 
+
+                     
+            brightnessArray[i][j] = Math.min(255,lastBrightnessArray[i][j]*((LastBrightnessCoeff * (1 - VertProp)))
+                 + ( downBrightness*VertProp*0.6 + upBrightness*VertProp*0.6 + HorizProp*rightBrightness)/(VertProp+HorizProp));
            // brightnessArray[i][j] = brightnessArray[i][j]* 0.6;
-            if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
+            //if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
         }
     }
 }
