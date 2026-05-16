@@ -74,7 +74,7 @@ canvas {
     font-family: monospace;
     font-size: 15px;
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 80px;
 }
 
 .slider {
@@ -162,8 +162,11 @@ html, body {
         position: fixed;
         flex-direction: column; /* Stack sliders for thumb access */
         gap: 30px; 
-        left: 10px;
-        bottom: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding-bottom: 60px;
+        width: 100%;
     }
 
     .slider{
