@@ -153,7 +153,7 @@ html, body {
 
 
 /* Mobile: Screen is narrow OR the device uses touch */
-@media (max-width: 768px), (pointer: coarse) {
+@media (max-width: 768px) {
     .checkbox-container{
         display: none;
     }
