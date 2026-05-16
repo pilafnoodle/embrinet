@@ -16,6 +16,7 @@ html {
 
 h1{
     margin: 20px;
+    font-size: 35px;
 }
 
 canvas {
@@ -43,7 +44,6 @@ canvas {
     color: white;
     z-index: 2;
     font-family: monospace;
-    font-size: 35px;
 
     align-items: center;
     width: 100%;
