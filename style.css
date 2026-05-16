@@ -163,7 +163,7 @@ html, body {
         flex-direction: column; /* Stack sliders for thumb access */
         gap: 30px; 
         left: 10px;
-        bottom: 10px;
+        bottom: 60px;
     }
 
     .slider{
@@ -178,7 +178,6 @@ html, body {
         flex-direction: column;
         gap: 20px;
     }
-
     .text-content.open{
         display: none;
     }
