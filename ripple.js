@@ -257,9 +257,8 @@ function spawnFish(){
             //now the qustion is how do i get the height from the mid line of the font
 
             raw_spawn= Math.random()* (window.innerHeight ) //raw pixel height, need to find nearest pixel that is multiple of pheight
-            spawnHeight = Math.round(raw_spawn / pheight) * pheight + (0.5*pheight) + (0.5*fontSize) -pheight
+            spawnHeight = Math.round(raw_spawn / pheight) * pheight - (0.5*pheight) - (0.5*fontSize) 
                     //fin the nearest pixel edge
-            console.log(spawnHeight);
             direction ="left"// Math.random() < 0.5 ? "left": "right"; //put this back
             speed=Math.random()*3+2.5;
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
@@ -331,4 +330,14 @@ menuBtn.addEventListener('click', () => {
     textContent.classList.toggle('open');
 
 
+});
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        menuBtn.style.opacity = '0';
+        menuBtn.style.pointerEvents = 'none';
+    } else {
+        menuBtn.style.opacity = '1';
+        menuBtn.style.pointerEvents = 'auto';
+    }
 });
