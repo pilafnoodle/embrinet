@@ -4,10 +4,11 @@ const canvas=document.getElementById("canvas")
 const ctx=canvas.getContext("2d")
 
 
-img.src='img/fishpond.png';
+img.src='img/fishpond.avif';
 
-pwidth=30
-pheight=15
+const isMobile = window.innerWidth <= 768;
+pwidth = isMobile ? 15 : 30;
+pheight = isMobile ? 8 : 15;
 blockArray = []; //stores original image blocks
 brightnessArray=[]; //stores brightness  (ajust alpha value)
 lastBrightnessArray=[];
@@ -53,6 +54,8 @@ img.onload = () => {
     }
 
     drawAll();
+    document.getElementById('home-page-content').style.display = 'block';
+
 };
 
 function drawAll(){
@@ -149,8 +152,8 @@ showControlsBox.addEventListener("change", () => {
 function ripplePixels(){
     lastBrightnessArray = brightnessArray.map(col => [...col]);
     for (let i=0; i<cols;i++){ 
-
         for (let j=1; j<rows-1; j++){
+
          
             rightBrightness=0;
             if(j%1==0 && i!==0){ 
@@ -161,11 +164,11 @@ function ripplePixels(){
                 downBrightness=lastBrightnessArray[i][j+1] 
             } 
 
-                     
+                    
             brightnessArray[i][j] = Math.min(255,lastBrightnessArray[i][j]*((LastBrightnessCoeff * (1 - VertProp)))
-                 + ( downBrightness*VertProp*0.6 + upBrightness*VertProp*0.6 + HorizProp*rightBrightness)/(VertProp+HorizProp));
-           // brightnessArray[i][j] = brightnessArray[i][j]* 0.6;
-            //if (brightnessArray[i][j] < 10) brightnessArray[i][j] = 0;//if its so smol cant see it just make it 0
+                + ( downBrightness*VertProp*0.6 + upBrightness*VertProp*0.6 + HorizProp*rightBrightness)/(VertProp+HorizProp));
+
+
         }
     }
 }
@@ -234,6 +237,12 @@ linkMap.set("Wings","embri.net")
 fihSpawnTick=0;
 fihSpawnInterval=0;
 function spawnFish(){
+    fihArray = fihArray.filter(f => {
+        if (f.direction === "left") return f.posX > -f.fontSize * f.text.length;
+        if (f.direction === "right") return f.posX < canvas.width;
+        return true;
+    });
+       
     if(fihSpawnTick>fihSpawnInterval){
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
@@ -263,13 +272,14 @@ function spawnFish(){
         fihArray[i].updatePosition();
         fihArray[i].draw();
     }
-    
+ 
     
     fihSpawnTick++;
     // requestAnimationFrame(spawnFish);
 }
 
 //darkens pixels where a Fih hits
+//creates forces
 function FihRipple(){
     for (let i = 0; i < fihArray.length; i++){
         pixelatedX = Math.floor(fihArray[i].posX / pwidth);
@@ -280,7 +290,8 @@ function FihRipple(){
             forceArray[pixelatedX][pixelatedY] = fihArray[i].direction === "left" ? {x: -1, y: 0} : {x: 1, y: 0};       
         }
     }
-    // requestAnimationFrame(FihRipple);
+
+
 }
 
 function pixelateImage(originalImage, pwidth, pheight, destx,desty, drawWidth,drawHeight) {

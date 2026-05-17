@@ -151,6 +151,10 @@ html, body {
     margin: 40px;
 }
 
+#home-page-content{
+    display:none;
+}
+
 
 /* Mobile: Screen is narrow OR the device uses touch */
 @media (max-width: 768px) {
