@@ -154,11 +154,20 @@ function ripplePixels(){
     for (let i=0; i<cols;i++){ 
         for (let j=1; j<rows-1; j++){
 
-         
-            rightBrightness=0;
-            if(j%1==0 && i!==0){ 
+            
+            forceX=forceArray[i][j].x
+            forceY=forceArray[i][j].y
+
+            rightBrightness=0; //for left going fish, force x is negative
+            leftBrightness=0;  //force right going fish, force x is positive
+
+            if(i!==0){  //if not the first i
                 rightBrightness=lastBrightnessArray[i-1][j] //this is for left going fish
             }
+            if(i<cols-1){ //if not the last i
+                leftBrightness=lastBrightnessArray[i+1][j] //if left force is 0
+            }
+
             upBrightness=lastBrightnessArray[i][j-1]
             if(j!==rows-1){
                 downBrightness=lastBrightnessArray[i][j+1] 
