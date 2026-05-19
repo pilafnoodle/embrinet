@@ -110,18 +110,19 @@ canvas {
 
 .controls-container{
     gap: 40px;
-    position: absolute;
+    position: relative;
     z-index: 2;
-    display: none;
     left: 10px;
-    background: rgba(0, 0, 0, 0.5);
     bottom: 10px;
+    display: none;      
+
 }
 
 .checkbox-container{
 
     font-family: monospace;
     color: white;
+    opacity:0.4;
     padding: 10px;
     font-size: 20px;
     z-index: 2;
@@ -131,7 +132,7 @@ canvas {
     display: none;
     color: white;
     background-color: transparent;
-    bottom: 10px;
+    top: 10px;
     left: 10px;
     position: fixed;
 }   
@@ -160,6 +161,18 @@ html, body {
     display:none;
 }
 
+#site-header h1{
+    color: white;
+    font-family: monospace;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    position: absolute;
+    margin:0;
+    padding:0;
+
+}
+
 #scroll-hint {
     display: flex;
     flex-direction: column;
@@ -169,12 +182,24 @@ html, body {
     left: 10px;
     z-index: 2;
     position: fixed;
+    margin:0;
+    padding:0;
 
 }
 
-#scroll-hint span {
+#scroll-hint p {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+#scroll-hint p {
+
     animation: cascade 1.2s infinite;
     color: white;
+    opacity:0.5;
     font-family: monospace;
     font-size: 20px;
 }
@@ -182,9 +207,10 @@ html, body {
 #scroll-hint span:nth-child(2) { animation-delay: 0.2s; }
 #scroll-hint span:nth-child(3) { animation-delay: 0.4s; }
 
+
 @keyframes cascade {
     0%, 100% { opacity: 0.1; }
-    50% { opacity: 1; }
+    50% { opacity: 0.7; }
 }
 
 
@@ -198,6 +224,7 @@ html, body {
         position: fixed;
         flex-direction: column; /* Stack sliders for thumb access */
         gap: 30px; 
+        top: unset;
         left: 0;
         right: 0;
         bottom: 0;

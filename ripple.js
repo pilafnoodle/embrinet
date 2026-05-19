@@ -13,6 +13,9 @@ blockArray = []; //stores original image blocks
 brightnessArray=[]; //stores brightness  (ajust alpha value)
 lastBrightnessArray=[];
 forceArray=[]; //stores the direction of the last movement up,down,left,right
+lastForceArray=[]; //stores the direction of the last movement up,down,left,right
+
+embriFihSpawned=false;
 //these are processed pixel cols and rows, not raw pixel cols and rows
 cols=0;
 rows=0;
@@ -33,6 +36,7 @@ img.onload = () => {
         blockArray[i] = [];
         brightnessArray[i] = [];
         forceArray[i] = [];
+        lastForceArray[i] = [];
         lastBrightnessArray[i]=[];
 
 
@@ -47,6 +51,7 @@ img.onload = () => {
             blockArray[i][j] = 0.299*r + 0.587*g + 0.114*b;
             brightnessArray[i][j] = 0 //everything dark brightness
             lastBrightnessArray[i][j]=0;
+            lastForceArray[i][j]= { x: 0, y: 0 };
 
             const forceVector = { x: 0, y: 0 };
             forceArray[i][j] = forceVector //everything is at 0 force initially
@@ -61,10 +66,47 @@ img.onload = () => {
 function drawAll(){
     ripplePixels(); // calculates brightness of every point
     updateBrightness(); // applies it
-
+    //  
     spawnFish();//checks if i should spawn a new
     FihRipple();
     requestAnimationFrame(drawAll);
+}
+
+function drawForcePoints(){
+        const points = [
+            ...Array.from({length: 10}, (_, i) => ({ x: 22, y: 10 + i * 2 })),
+            ...Array.from({length: 10}, (_, i) => ({ x: 10, y: 10 + i * 2 })),
+        ];
+
+    points.forEach(p => {
+        const px = p.x * pwidth;
+        const py = p.y * pheight;
+        ctx.fillStyle = 'green';
+        ctx.fillRect(px - 4, py - 4, 8, 8);
+        ctx.fillStyle = 'white';
+        ctx.font = '12px monospace';
+        ctx.fillText(`(${p.x},${p.y})`, px + 6, py + 6);
+        ctx.fillText(`(Fx:${forceArray[p.x][p.y].x})`, px + 50,py+6);
+
+    });
+}
+
+function drawDebugPoints() {
+    const points = [
+        { x: 0, y: 0 },
+        { x: cols-1, y: 0 },
+        { x: 0, y: rows-1 },
+        { x: cols-1, y: rows-1 }
+    ];
+    points.forEach(p => {
+        const px = p.x * pwidth;
+        const py = p.y * pheight;
+        ctx.fillStyle = 'red';
+        ctx.fillRect(px - 4, py - 4, 8, 8);
+        ctx.fillStyle = 'white';
+        ctx.font = '12px monospace';
+        ctx.fillText(`(${p.x},${p.y})`, px + 6, py + 6);
+    });
 }
 
 //also updates force array to decay
@@ -75,8 +117,7 @@ function updateBrightness(){ //dispalys based on brightness array and moves the
             brightness=brightnessArray[i][j]
             ctx.fillStyle = `rgba(0, 0, 0, ${1 - brightness/255})`;  //last param is alpha, higher brightness means 1-1=0, so completely transparent
             ctx.fillRect(i*pwidth,j*pheight,pwidth,pheight);    
-            forceArray[i][j].x =  forceArray[i][j].x * Math.exp(-0.02);
-            forceArray[i][j].y = forceArray[i][j].y * Math.exp(-0.02);
+           
         }
     }
 }
@@ -151,31 +192,55 @@ showControlsBox.addEventListener("change", () => {
 
 function ripplePixels(){
     lastBrightnessArray = brightnessArray.map(col => [...col]);
-    for (let i=0; i<cols;i++){ 
-        for (let j=1; j<rows-1; j++){
+    lastForceArray = forceArray.map(col => [...col]);
 
-            
+    for (let i=0; i<cols;i++){ 
+        for (let j=0; j<rows; j++){
+
             forceX=forceArray[i][j].x
             forceY=forceArray[i][j].y
 
             rightBrightness=0; //for left going fish, force x is negative
             leftBrightness=0;  //force right going fish, force x is positive
+            rightForce=0
+            leftForce=0
+            downForce=0
 
             if(i!==0){  //if not the first i
                 rightBrightness=lastBrightnessArray[i-1][j] //this is for left going fish
+                //rightForce=lastForceArray[i-1][j].x
+
             }
             if(i<cols-1){ //if not the last i
                 leftBrightness=lastBrightnessArray[i+1][j] //if left force is 0
+               // leftForce=lastForceArray[i+1][j].x
+
             }
 
-            upBrightness=lastBrightnessArray[i][j-1]
+            upBrightness = j > 0 ? lastBrightnessArray[i][j-1] : 0;
+            downBrightness = j < rows-1 ? lastBrightnessArray[i][j+1] : 0;
             if(j!==rows-1){
                 downBrightness=lastBrightnessArray[i][j+1] 
+                //downForce=lastForceArray[i][j-1].y
             } 
-
                     
+            //brightnessArray[i][j] = Math.min(255,lastBrightnessArray[i][j]*((LastBrightnessCoeff * (1 - VertProp)))
+                // + downBrightness*VertProp*0.6 + 
+                //     upBrightness*VertProp*0.6 + 
+                //    (HorizProp*leftBrightness*forceX)+
+                //     (HorizProp*rightBrightness*forceX)
+                //     /(VertProp+HorizProp));
+
             brightnessArray[i][j] = Math.min(255,lastBrightnessArray[i][j]*((LastBrightnessCoeff * (1 - VertProp)))
-                + ( downBrightness*VertProp*0.6 + upBrightness*VertProp*0.6 + HorizProp*rightBrightness)/(VertProp+HorizProp));
+                + downBrightness*VertProp*0.6 + 
+                    upBrightness*VertProp*0.6 + 
+                    (HorizProp*rightBrightness)
+                    /(VertProp+HorizProp));
+            
+                
+            // //logic to make forces cancel out
+            // forceArray[i][j].x = (rightForce + leftForce) * 0.8;
+            // forceArray[i][j].y = (upForce + downForce) * 0.8;
 
 
         }
@@ -205,12 +270,7 @@ class Fih{
     }
     updatePosition(){
         this.posX = this.posX+this.speed;
-        if(this.posX>canvas.width && this.direction=="right"){
-            this.posX=0;
-        }
-        else if(this.posX < -this.fontSize * this.text.length && this.direction=="left"){
-            this.posX = canvas.width;
-        }   
+
     }
     draw(){
         ctx.font = `${this.fontSize}px monospace`
@@ -256,11 +316,14 @@ function spawnFish(){
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
         if (fihArray.length<5){
+
+            
             let fontSize=Math.random()*5+20;
             const textOptions = Array.from(linkMap.keys()); 
             randomText = textOptions[Math.floor(Math.random() * textOptions.length)];
             console.log("all options:", textOptions);
             console.log("Picked:", randomText);
+
             //the spawn height has to be normalized to the center of a pixel
             //textfill is bottom left and pixel starts from right going fish, good because i want the ripple to start from the tail
             //now the qustion is how do i get the height from the mid line of the font
@@ -270,9 +333,21 @@ function spawnFish(){
                     //fin the nearest pixel edge
             direction ="left"// Math.random() < 0.5 ? "left": "right"; //put this back
             speed=Math.random()*3+2.5;
+
+            //overwrite if embriFih has not spawned
+            if (embriFihSpawned==false){ //overwrite it if its the first Fih
+                randomText = "Embri.net";
+                speed=6
+                spawnHeight = Math.round((window.innerHeight/2) / pheight) * pheight 
+                fontSize=50;
+                direction="left"
+                embriFihSpawned=true
+
+            }
+
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray>=5){
+        }else if(fihArray.length>=5){
             fihArray.shift();
         }
     }
@@ -295,7 +370,7 @@ function FihRipple(){
 
         if (pixelatedX >= 0 && pixelatedX < cols && pixelatedY >= 0 && pixelatedY < rows){
             brightnessArray[pixelatedX][pixelatedY] = 255 //12 characters long for max brightness
-            forceArray[pixelatedX][pixelatedY] = fihArray[i].direction === "left" ? {x: -1, y: 0} : {x: 1, y: 0};       
+            forceArray[pixelatedX][pixelatedY] = fihArray[i].direction === "left" ? {x: 1, y: 0} : {x: -1, y: 0};       
         }
     }
 
@@ -349,4 +424,26 @@ window.addEventListener('scroll', () => {
         menuBtn.style.opacity = '1';
         menuBtn.style.pointerEvents = 'auto';
     }
+});
+window.addEventListener('scroll', () => {
+    const hint = document.getElementById('scroll-hint');
+    hint.style.opacity = window.scrollY > 50 ? '0' : '1';
+    hint.style.transition = 'opacity 0.5s';
+});
+
+showControlsBox.addEventListener("change", () => {
+    if (showControlsBox.checked) {
+        controlsContainer.style.display = "flex";
+        document.querySelector(".checkbox-container").style.opacity = "1";
+    } else {
+        controlsContainer.style.display = "none";
+        document.querySelector(".checkbox-container").style.opacity = "0.4";
+    }
+});
+
+menuBtn.addEventListener('click', () => {
+    sheet.classList.toggle('open');
+    textContent.classList.toggle('open');
+    document.body.style.overflowY = sheet.classList.contains('open') ? 'hidden' : 'auto';
+    document.getElementById('scroll-hint').style.display = sheet.classList.contains('open') ? 'none' : 'flex';
 });

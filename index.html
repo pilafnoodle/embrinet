@@ -10,39 +10,49 @@
 
 <body>
 <div id="desktop-nav">
-
+    
 
 
 </div>
 <div id="fluid-simulator">
         <canvas id="canvas"></canvas>
-        <div class="controls-container" id="controls-container">
+        <div id="scroll-hint">
+            <p class="caret">Continue ↓</p>
+        </div>
+<!-- 
+        <div id="site-header">
+            <h1>Embri.net</h1>
+        </div> -->
 
+</div>
+
+
+<div id="home-page-content">
+         
+        <button id="menu-button">
+            <span>⚙</span> </button>
+
+        <div class="controls-container" id="controls-container">
             <div class="slider-set">
                 <label class="slider-label" for="LastBrightnessCoeffSlider">Decay Coeff.</label>
-                <input type="range" min="0.001" max="0.3" step ="0.01" value="0.12" class="slider" id="LastBrightnessCoeffSlider"> 
+                <input type="range" min="0.001" max="0.99" step ="0.01" value="0.3" class="slider" id="LastBrightnessCoeffSlider"> 
             </div>
             <div class="slider-set">
                 <label class="slider-label" for="VertPropSlider">Vert. Propagation</label>
-                <input type="range" min="0.1" max="0.99" step ="0.01" value="0.4" class="slider" id="VertPropSlider"> 
+                <input type="range" min="0.1" max="0.99" step ="0.01" value="0.32" class="slider" id="VertPropSlider"> 
             </div>
             <div class="slider-set">
                 <label class="slider-label" for="HorizPropSlider">Horiz. Propagation</label>
-                <input type="range" min="0.1" max="0.99" step ="0.01" value="0.7" class="slider" id="HorizPropSlider">
+                <input type="range" min="0.1" max="0.99" step ="0.01" value="0.4" class="slider" id="HorizPropSlider">
             </div>
- 
+
         </div>
-</div>
 
-<div id="home-page-content">
-
+            
         <div class="checkbox-container">
-            <label for="show-controls-box">Open Simulator Controls</label>
+            <label for="show-controls-box">open fluid controls</label>
                 <input type="checkbox" id="show-controls-box">
-        </div>    
-        
-        <button id="menu-button">
-            <span>⚙</span> </button>
+        </div>   
 
     <div id="text-content" class="text-content">
         <div id ="title">
@@ -58,9 +68,13 @@
                 <button class="hyperlink" onclick="window.open('https://www.youtube.com/watch?v=RU8BxTnECmo', '_blank')">Youtube</button>
                 <button class="hyperlink" onclick="window.open('https://embri.bandcamp.com/album/cascade-memory', '_blank')">Bandcamp</button>
                
-                <button class="hyperlink" onclick="window.open('https://www.instagram.com/embri_net/', '_blank')">Instagram</button>
+                <button class="hyperlink" onclick="window.open('https:https://www.instagram.com/embri_net/', '_blank')">Instagram</button>
             </div>
         </div>
+
+
+
+
 
         
 
