@@ -409,12 +409,6 @@ return offscreen;
 const menuBtn = document.getElementById('menu-button');
 const sheet = document.getElementById('controls-container');
 const textContent=document.getElementById('text-content')
-menuBtn.addEventListener('click', () => {
-    sheet.classList.toggle('open');
-    textContent.classList.toggle('open');
-
-
-});
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -446,4 +440,6 @@ menuBtn.addEventListener('click', () => {
     textContent.classList.toggle('open');
     document.body.style.overflowY = sheet.classList.contains('open') ? 'hidden' : 'auto';
     document.getElementById('scroll-hint').style.display = sheet.classList.contains('open') ? 'none' : 'flex';
+
+
 });
