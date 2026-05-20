@@ -224,24 +224,12 @@ function ripplePixels(){
                 //downForce=lastForceArray[i][j-1].y
             } 
                     
-            //brightnessArray[i][j] = Math.min(255,lastBrightnessArray[i][j]*((LastBrightnessCoeff * (1 - VertProp)))
-                // + downBrightness*VertProp*0.6 + 
-                //     upBrightness*VertProp*0.6 + 
-                //    (HorizProp*leftBrightness*forceX)+
-                //     (HorizProp*rightBrightness*forceX)
-                //     /(VertProp+HorizProp));
-
             brightnessArray[i][j] = Math.min(255,lastBrightnessArray[i][j]*((LastBrightnessCoeff * (1 - VertProp)))
                 + downBrightness*VertProp*0.6 + 
                     upBrightness*VertProp*0.6 + 
                     (HorizProp*rightBrightness)
                     /(VertProp+HorizProp));
             
-                
-            // //logic to make forces cancel out
-            // forceArray[i][j].x = (rightForce + leftForce) * 0.8;
-            // forceArray[i][j].y = (upForce + downForce) * 0.8;
-
 
         }
     }
@@ -337,7 +325,7 @@ function spawnFish(){
             //overwrite if embriFih has not spawned
             if (embriFihSpawned==false){ //overwrite it if its the first Fih
                 randomText = "Embri.net";
-                speed=6
+                speed=4.5
                 spawnHeight = Math.round((window.innerHeight/2) / pheight) * pheight 
                 fontSize=50;
                 direction="left"
@@ -440,6 +428,5 @@ menuBtn.addEventListener('click', () => {
     textContent.classList.toggle('open');
     document.body.style.overflowY = sheet.classList.contains('open') ? 'hidden' : 'auto';
     document.getElementById('scroll-hint').style.display = sheet.classList.contains('open') ? 'none' : 'flex';
-
 
 });
