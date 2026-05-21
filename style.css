@@ -105,20 +105,7 @@ canvas {
     }
 }
 
-.most-important-link:hover {
-    transform: translateY(-2px); 
-    filter: brightness(1.1);    
-}
 
-/* The magic happens when the user hovers over it */
-.most-important-link:hover {
-    filter: brightness(1.1);    /* Gets slightly brighter */
-}
-
-/* Tactile feedback when clicked */
-.most-important-link:active {
-    transform: translateY(1px);  /* Sinks down when clicked */
-}
 
 .hyperlink {
     background: none;       
@@ -226,7 +213,7 @@ html, body {
 }
 
 #home-page-content{
-    display:none;
+    display:block;
 }
 
 #site-header h1{
