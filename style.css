@@ -3,7 +3,6 @@ body {
     padding: 0;
     overflow-x: hidden;
     background-color: black;
-/* #    height: 100vh; */
     overflow-y: auto;
 }
 
@@ -89,16 +88,30 @@ canvas {
     font-size: 30px;
     font-family: monospace;
     border: none;
-    border-radius: 10px;       /* Pill-shaped */
-    cursor: pointer;          /* Forces the "hand" icon on hover */
-    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3); /* Soft glowing shadow */
-    transition: all 0.2s ease; /* Smooth animation for hover states */
+    border-radius: 10px;       
+    cursor: pointer;          
+    transition: all 0.2s ease; 
+    animation: slight-bounce 2s infinite ease-in-out;
+}
+
+@keyframes slight-bounce {
+    0%, 100% {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    50% {
+        margin-top: 34px;
+        margin-bottom: 46px;
+    }
+}
+
+.most-important-link:hover {
+    transform: translateY(-2px); 
+    filter: brightness(1.1);    
 }
 
 /* The magic happens when the user hovers over it */
 .most-important-link:hover {
-    transform: translateY(-2px); /* Lifts up slightly */
-    box-shadow: 0 6px 20px rgba(255, 0, 85, 0.5); /* Shadow deepens */
     filter: brightness(1.1);    /* Gets slightly brighter */
 }
 
@@ -118,11 +131,11 @@ canvas {
 }
 
 .hyperlink:hover  {
-    opacity: 0.7;            /* dim on hover */
+    opacity: 0.7;            
 }
 
 .hyperlink  {
-    opacity: 0.5;            /* dim on click */
+    opacity: 0.5;            
 }
 
 #footer{
