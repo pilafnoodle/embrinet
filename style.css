@@ -41,7 +41,28 @@ canvas {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #333;
+    background-colo.most-important-link {
+    background-color: #ff0055; /* Use a vibrant accent color (e.g., Bandcamp pink/teal) */
+    color: #ffffff;            /* High contrast text */
+    font-weight: bold;
+    padding: 12px 24px;        /* Generous hitting area */
+    border: none;
+    border-radius: 50px;       /* Pill-shaped */
+    cursor: pointer;          /* Forces the "hand" icon on hover */
+    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3); /* Soft glowing shadow */
+    transition: all 0.2s ease; /* Smooth animation for hover states */
+}
+
+.most-important-link:hover {
+    transform: translateY(-2px); /* Lifts up slightly */
+    box-shadow: 0 6px 20px #ff0055; /* Shadow deepens */
+    font-family: monospace;
+}
+
+/* Tactile feedback when clicked */
+.most-important-link:active {
+    transform: translateY(1px);  /* Sinks down when clicked */
+}r: #333;
 }
 
 #title{
@@ -52,6 +73,38 @@ canvas {
 
     align-items: center;
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;  /* Ensures inline text/buttons are centered */
+
+}
+
+.most-important-link {
+    background-color: #629aa9; /* Use a vibrant accent color (e.g., Bandcamp pink/teal) */
+    color: #ffffff;            /* High contrast text */
+    font-weight: bold;
+    padding: 12px 24px;     
+    margin: 40px;
+    font-size: 30px;
+    font-family: monospace;
+    border: none;
+    border-radius: 10px;       /* Pill-shaped */
+    cursor: pointer;          /* Forces the "hand" icon on hover */
+    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3); /* Soft glowing shadow */
+    transition: all 0.2s ease; /* Smooth animation for hover states */
+}
+
+/* The magic happens when the user hovers over it */
+.most-important-link:hover {
+    transform: translateY(-2px); /* Lifts up slightly */
+    box-shadow: 0 6px 20px rgba(255, 0, 85, 0.5); /* Shadow deepens */
+    filter: brightness(1.1);    /* Gets slightly brighter */
+}
+
+/* Tactile feedback when clicked */
+.most-important-link:active {
+    transform: translateY(1px);  /* Sinks down when clicked */
 }
 
 .hyperlink {
@@ -131,10 +184,12 @@ canvas {
 #menu-button{
     display: none;
     color: white;
-    background-color: transparent;
+    background-color: black;
     top: 10px;
     left: 10px;
     position: fixed;
+    height: 40px;
+    width: 40px;
 }   
 
 .bottom-sheet{
