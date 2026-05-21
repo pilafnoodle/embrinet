@@ -4,7 +4,7 @@ const canvas=document.getElementById("canvas")
 const ctx=canvas.getContext("2d")
 
 
-img.src='img/fishpond.avif';
+img.src='img/cover-square.jpg';
 
 const isMobile = window.innerWidth <= 768;
 pwidth = isMobile ? 15 : 30;
