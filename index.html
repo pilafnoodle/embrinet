@@ -14,24 +14,53 @@
 
 
 </div>
+  <div id="page-wrapper">
+
 <div id="fluid-simulator">
         <canvas id="canvas"></canvas>
         <div id="scroll-hint">
             <p class="caret">Continue ↓</p>
         </div>
-<!-- 
-        <div id="site-header">
-            <h1>Embri.net</h1>
-        </div> -->
-
 </div>
 
 
-<div id="home-page-content">
-         
-        <button id="menu-button"></button>
+<button id="menu-button"></button>
 
-        <div class="controls-container" id="controls-container">
+<div id="home-page-content">
+    
+
+    <div id="text-content" class="text-content">
+        <div id ="title">
+            <img id="cover-art" src="img/low_res_cover.avif">
+            <!-- <h1>Embri</h1>
+            <h1>
+                Cascade Memory</h1> -->
+            <div class="hyperlink-grid">
+                <button class="hyperlink" onclick="window.open('https://open.spotify.com/album/...', '_blank')">Spotify</button>
+                <button class="hyperlink" onclick="window.open('https://music.apple.com/...', '_blank')">Apple Music</button>
+                <button class="hyperlink" onclick="window.open('https://www.youtube.com/...', '_blank')">Youtube</button>
+                <button class="hyperlink" onclick="window.open('https://embri.bandcamp.com/...', '_blank')">Bandcamp</button>
+                <button class="hyperlink" onclick="window.open('https://www.instagram.com/...', '_blank')">Instagram</button>
+            </div>
+           
+            <button class="most-important-link" onclick="window.open('https://embri.bandcamp.com/album/cascade-memory', '_blank')">Cassettes and Downloads</button>
+
+        </div>
+
+
+        <div id="footer">Thank you for visiting :D</div>
+
+
+    </div>
+    </div>
+
+    
+    <div class="interactive-wrapper">
+        <div class="checkbox-container">
+            <label for="show-controls-box">open fluid controls</label>
+                <input type="checkbox" id="show-controls-box">
+        </div> 
+                <div class="controls-container" id="controls-container">
             <div class="slider-set">
                 <label class="slider-label" for="LastBrightnessCoeffSlider">Decay Coeff.</label>
                 <input type="range" min="0.001" max="0.99" step ="0.01" value="0.3" class="slider" id="LastBrightnessCoeffSlider"> 
@@ -47,45 +76,13 @@
 
         </div>
 
-            
-        <div class="checkbox-container">
-            <label for="show-controls-box">open fluid controls</label>
-                <input type="checkbox" id="show-controls-box">
-        </div>   
 
-    <div id="text-content" class="text-content">
-        <div id ="title">
-            <!-- <h1>Embri.net</h1> -->
-            <img id="cover-art" src="img/low_res_cover.avif">
-            <!-- <h1>Embri</h1>
-            <h1>
-                Cascade Memory</h1> -->
-            <div>
-                <button class="hyperlink" onclick="window.open('https://open.spotify.com/album/0QDOc9BeFWXSoxmocdQ666?si=EdB_AKZLSC-0tPtfEC7yOQ', '_blank')">Spotify</button>
-                <button class="hyperlink" onclick="window.open('https://music.apple.com/us/album/cascade-memory/1896178466', '_blank')">Apple Music</button>
-                <button class="hyperlink" onclick="window.open('https://www.youtube.com/watch?v=RU8BxTnECmo', '_blank')">Youtube</button>
-                <button class="hyperlink" onclick="window.open('https://embri.bandcamp.com/album/cascade-memory', '_blank')">Bandcamp</button>
-                <button class="hyperlink" onclick="window.open('https://www.instagram.com/embri_net/', '_blank')">Instagram</button>
-            </div>
-           
-            <button class="most-important-link" onclick="window.open('https://embri.bandcamp.com/merch/cascade-memory-listening-party', '_blank')">Listening Party @ 5/22 6pm PDT</button>
-
-        </div>
-
-
-
-
-
-        
-
-
-        <div id="footer">Thank you for visiting :D</div>
-
-    </div>
     </div>
 
 
     <script src="ripple.js"></script>
+
+    </div>
 
 </body>
 </html>

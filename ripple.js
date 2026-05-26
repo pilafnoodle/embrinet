@@ -20,12 +20,15 @@ embriFihSpawned=false;
 cols=0;
 rows=0;
 let pixelatedCanvas=null;
+imgLoaded=false;
+
 
 img.onload = () => {
-    canvas.width = Math.floor(window.innerWidth / pwidth) * pwidth;
-    canvas.height = Math.floor(window.innerHeight / pheight) * pheight;
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const aspectRatio = img.naturalHeight / img.naturalWidth;
 
+    canvas.width = Math.floor(window.innerWidth / pwidth) * pwidth;
+    canvas.height = Math.floor(document.body.scrollHeight / pheight) * pheight;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
     pixelatedCanvas = pixelateImage(img, pwidth, pheight, 0, 0, canvas.width, canvas.height); 
     cols = Math.floor(canvas.width / pwidth);
@@ -303,7 +306,7 @@ function spawnFish(){
     if(fihSpawnTick>fihSpawnInterval){
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
-        if (fihArray.length<5){
+        if (fihArray.length<8){
 
             
             let fontSize=Math.random()*5+20;
@@ -316,7 +319,7 @@ function spawnFish(){
             //textfill is bottom left and pixel starts from right going fish, good because i want the ripple to start from the tail
             //now the qustion is how do i get the height from the mid line of the font
 
-            raw_spawn= Math.random()* (window.innerHeight ) //raw pixel height, need to find nearest pixel that is multiple of pheight
+            raw_spawn= Math.random()* (canvas.height ) //raw pixel height, need to find nearest pixel that is multiple of pheight
             spawnHeight = Math.round(raw_spawn / pheight) * pheight - (0.5*pheight) - (0.5*fontSize) 
                     //fin the nearest pixel edge
             direction ="left"// Math.random() < 0.5 ? "left": "right"; //put this back
@@ -335,7 +338,7 @@ function spawnFish(){
 
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray.length>=5){
+        }else if(fihArray.length>=8){
             fihArray.shift();
         }
     }
@@ -397,36 +400,25 @@ return offscreen;
 const menuBtn = document.getElementById('menu-button');
 const sheet = document.getElementById('controls-container');
 const textContent=document.getElementById('text-content')
+const scroller = document.getElementById('page-wrapper'); // or whichever element scrolls
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        menuBtn.style.opacity = '0';
-        menuBtn.style.pointerEvents = 'none';
-    } else {
-        menuBtn.style.opacity = '1';
-        menuBtn.style.pointerEvents = 'auto';
-    }
-});
-window.addEventListener('scroll', () => {
-    const hint = document.getElementById('scroll-hint');
-    hint.style.opacity = window.scrollY > 50 ? '0' : '1';
-    hint.style.transition = 'opacity 0.5s';
-});
 
-showControlsBox.addEventListener("change", () => {
-    if (showControlsBox.checked) {
-        controlsContainer.style.display = "flex";
-        document.querySelector(".checkbox-container").style.opacity = "1";
-    } else {
-        controlsContainer.style.display = "none";
-        document.querySelector(".checkbox-container").style.opacity = "0.4";
-    }
-});
+
+// showControlsBox.addEventListener("change", () => {
+//     if (showControlsBox.checked) {
+//         controlsContainer.style.display = "flex";
+//         document.querySelector(".checkbox-container").style.opacity = "1";
+//     } else {
+//         controlsContainer.style.display = "none";
+//         document.querySelector(".checkbox-container").style.opacity = "0.4";
+//     }
+// });
 
 menuBtn.addEventListener('click', () => {
     sheet.classList.toggle('open');
     textContent.classList.toggle('open');
     document.body.style.overflowY = sheet.classList.contains('open') ? 'hidden' : 'auto';
     document.getElementById('scroll-hint').style.display = sheet.classList.contains('open') ? 'none' : 'flex';
+    document.getElementById('home-page-content').style.display = sheet.classList.contains('open') ? 'none' : 'flex';
 
 });
