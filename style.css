@@ -351,5 +351,10 @@ body {
     p{
         font-size: 18px;
     }
-    
+
+    body {
+        overflow-x: hidden;
+        scrollbar-width: none; /* Firefox */
+    }
 }
+    
