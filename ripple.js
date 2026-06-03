@@ -306,7 +306,7 @@ function spawnFish(){
     if(fihSpawnTick>fihSpawnInterval){
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
-        if (fihArray.length<8){
+        if (fihArray.length<11){
 
             
             let fontSize=Math.random()*5+20;
@@ -338,7 +338,7 @@ function spawnFish(){
 
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray.length>=8){
+        }else if(fihArray.length>=11){
             fihArray.shift();
         }
     }
