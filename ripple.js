@@ -349,7 +349,7 @@ function spawnFish(){
 
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);
-        }else if(fihArray.length>=8){
+        }else if(fihArray.length>=11){
             fihArray.shift();
         }
     }
