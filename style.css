@@ -235,10 +235,10 @@ body {
 }
 
 #cover-art {
-    width: 80%;          /* shrinks/grows with the box */
+    width: 90%;          /* shrinks/grows with the box */
     height: auto;        /* maintains aspect ratio */
     max-width: 400px;    /* won't get too huge on wide screens */
-    margin: 40px auto;   /* centers it */
+    margin: 20px auto;   /* centers it */
     display: block;
 }
 .hyperlink-grid {
@@ -432,7 +432,7 @@ body {
 
 
     p{
-        font-size: 20px;
+        font-size: 15px;
     }
 
     body {
