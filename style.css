@@ -430,9 +430,8 @@ body {
     }
 
 
-
     p{
-        font-size: 15px;
+        font-size: 14px;
     }
 
     body {
@@ -449,7 +448,7 @@ body {
     .content-card {
        
         max-width: 500px;
-        width: 80%;
+        width: 90%;
         margin: 0px auto 40px;   /* top, left/right, bottom */
         padding: 40px;
         box-sizing: border-box;
