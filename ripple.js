@@ -306,8 +306,10 @@ function spawnFish(){
     if(fihSpawnTick>fihSpawnInterval){
         fihSpawnTick=0;
         fihSpawnInterval=Math.floor(Math.random()*140)+40; 
+        console.log(fihArray.length)
+    
         if (fihArray.length<8){
-
+            console.log(fihArray.length)
             
             let fontSize=Math.random()*5+20;
             const textOptions = Array.from(linkMap.keys()); 
@@ -326,15 +328,24 @@ function spawnFish(){
             speed=Math.random()*3+2.5;
 
             //overwrite if embriFih has not spawned
-            if (embriFihSpawned==false){ //overwrite it if its the first Fih
+            if (embriFihSpawned==false){
                 randomText = "Embri.net";
                 speed=4.5
                 spawnHeight = Math.round((window.innerHeight/2) / pheight) * pheight 
                 fontSize=50;
                 direction="left"
                 embriFihSpawned=true
+            }
+
+            if(Math.random()>0.9){ //overwrite it if its the first Fih
+                randomText = "Embri.net";
+                speed=4.5
+                spawnHeight = Math.round((window.innerHeight/2) / pheight) * pheight 
+                fontSize=50;
+                direction="left"
 
             }
+
 
             const fih =  new Fih(spawnHeight, direction, randomText , speed, fontSize);
             fihArray.push(fih);

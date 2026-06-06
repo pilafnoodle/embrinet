@@ -71,6 +71,27 @@ canvas {
     transform: translateY(1px);  /* Sinks down when clicked */
 }
 
+.most-important-link {
+    /* ... your existing styles ... */
+    /* This runs the 'pulse' animation below non-stop */
+    animation: pulse 2.5s infinite ease-in-out; 
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(98, 154, 169, 0.3);
+    }
+    50% {
+        transform: scale(1.03); /* Growth peak */
+        box-shadow: 0 8px 25px rgba(98, 154, 169, 0.6); /* Glow intensifies */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(98, 154, 169, 0.3);
+    }
+}
+
 #title{
     text-align: center;
     color: white;
@@ -112,24 +133,32 @@ canvas {
     color: white;
     font-size: 20px;
     font-family: monospace;
+    opacity: 0.95;      
+
 }
 
 .hyperlink:hover  {
     opacity: 0.7;            
 }
 
-.hyperlink  {
-    opacity: 0.9;            
+
+
+.hidden-email {
+    direction: rtl;          
+    unicode-bidi: bidi-override;
+    font-family: monospace;
+    color: white;
 }
 
 #footer{
     text-align: center;
     color: white;
-    z-index: 2;
+    z-index: 7;
     font-family: monospace;
     font-size: 15px;
     padding-top: 40px;
     padding-bottom: 80px;
+    position: relative;
 }
 
 .slider {
@@ -214,12 +243,26 @@ body {
 }
 .hyperlink-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;   /* two equal columns */
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
     width: 100%;
 }
-.hyperlink-grid button:last-child {
-    grid-column: 1 / -1;   /* spans both columns */
+
+/* 1. Vertical Line: Add a right border to all left-column buttons (odd elements: 1, 3, 5) */
+.hyperlink-grid .hyperlink:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+/* 2. Horizontal Lines: Add a bottom border to the first 4 buttons (Rows 1 and 2) */
+.hyperlink-grid .hyperlink:nth-child(-n+4) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 3. Layout Clean-up: Remove any lingering full-width stretch forcing rules */
+.hyperlink-grid button:last-child {
+    grid-column: auto; 
+}
+
+
 
 .interactive-wrapper {
     display: flex;
@@ -229,14 +272,14 @@ body {
     z-index: 5;          /* Keeps it above the fluid simulation canvas */
     padding: 10px;
 }
-#home-page-content {
+.content-card {
     border: 2px solid rgba(255, 255, 255, 0.3);  
     position: relative;
     z-index: 5;
     background-color: rgba(0, 0, 0, 0.75);
     max-width: 600px;
     width: 90%;
-    margin: 0px auto 10px;   /* top, left/right, bottom */
+    margin: 0px auto 60px;   /* top, left/right, bottom */
     padding: 40px;
     box-sizing: border-box;
 }
@@ -267,6 +310,11 @@ body {
 
 }
 
+    p{
+        font-size: 20px;
+    }
+
+
 #scroll-hint p {
     margin: 0;
     padding: 0;
@@ -296,6 +344,41 @@ body {
 
 /* Mobile: Screen is narrow OR the device uses touch */
 @media (max-width: 768px) {
+
+   .hyperlink {
+        display: block;
+        width: 100%;
+        padding: 18px 20px;
+        margin: 0;
+        font-size: 18px;
+        text-align: center;
+        opacity: 0.9;
+        transition: opacity 0.2s ease, background 0.2s ease;
+
+        /* CRITICAL: Wipe out desktop grid borders completely for mobile stacking */
+        border-right: none !important;
+        border-bottom: none !important;
+    }
+
+    /* Adds the thin separator line ONLY between stacked mobile rows */
+    .hyperlink-grid .hyperlink:not(:first-child) {
+        border-top: 1px solid rgba(255, 255, 255, 0.2); 
+    }
+
+    /* Keeps the text crisp and highlights the row background slightly when tapped */
+    .hyperlink:active {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.05); 
+    }
+
+    /* Adjust your most important link so it doesn't get squished by the new zero-margin rules */
+    .most-important-link {
+        font-size: 20px;
+        padding: 14px 20px;
+        margin: 25px auto; /* Keeps the margin space active around your main call-to-action */
+        width: 80%;
+        box-sizing: border-box;
+    }
     .checkbox-container{
         display: none;
     }
@@ -349,12 +432,27 @@ body {
 
 
     p{
-        font-size: 18px;
+        font-size: 20px;
     }
 
     body {
         overflow-x: hidden;
         scrollbar-width: none; /* Firefox */
+    }
+
+    .hyperlink-grid {
+        grid-template-columns: 1fr; /* Changes grid to a single column */
+    }
+
+
+
+    .content-card {
+       
+        max-width: 500px;
+        width: 80%;
+        margin: 0px auto 40px;   /* top, left/right, bottom */
+        padding: 40px;
+        box-sizing: border-box;
     }
 }
     
